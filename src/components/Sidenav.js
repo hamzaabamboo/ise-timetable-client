@@ -47,7 +47,7 @@ class Sidenav extends React.Component {
 				temporary={this.state.isMobile}
 				onClose={() => this.props.setDrawer(false)}
 			>
-				<DrawerHeader>Main Navigation</DrawerHeader>
+				{/* <DrawerHeader>Main Navigation</DrawerHeader> */}
 				<DrawerContent>
 					<ListItem onClick={() => store.dispatch(push('/'))}>
 						<ListItemText>Basic Info</ListItemText>
