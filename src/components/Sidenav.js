@@ -1,4 +1,4 @@
-import { Drawer, DrawerHeader, DrawerContent } from 'rmwc/Drawer';
+import { Drawer, DrawerContent } from 'rmwc/Drawer';
 import { ListItem, ListItemText } from 'rmwc/List';
 import { connect } from 'react-redux';
 import React from 'react';

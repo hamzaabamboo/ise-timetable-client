@@ -8,13 +8,15 @@ import registerServiceWorker from './registerServiceWorker';
 import AppRouter from './routers/AppRouter';
 import store from './store';
 import { RMWCProvider } from 'rmwc/Provider';
-
+import DocumentTitle from 'react-document-title';
 ReactDOM.render(
-	<RMWCProvider>
-		<Provider store={store}>
-			<AppRouter />
-		</Provider>
-	</RMWCProvider>,
+	<DocumentTitle title={'ISE Timetable v2.0.0-alpha'}>
+		<RMWCProvider>
+			<Provider store={store}>
+				<AppRouter />
+			</Provider>
+		</RMWCProvider>
+	</DocumentTitle>,
 	document.getElementById('root')
 );
 registerServiceWorker();
