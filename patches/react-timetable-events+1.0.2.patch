@@ -1,0 +1,2192 @@
+patch-package
+--- a/node_modules/react-timetable-events/dist/index.es.js
++++ b/node_modules/react-timetable-events/dist/index.es.js
+@@ -1,28 +1,30 @@
+ function __$$styleInject(css, ref) {
+-  if ( ref === void 0 ) ref = {};
+-  var insertAt = ref.insertAt;
+-
+-  if (!css) { return }
+-
+-  var head = document.head || document.getElementsByTagName('head')[0];
+-  var style = document.createElement('style');
+-  style.type = 'text/css';
+-
+-  if (insertAt === 'top') {
+-    if (head.firstChild) {
+-      head.insertBefore(style, head.firstChild);
+-    } else {
+-      head.appendChild(style);
+-    }
+-  } else {
+-    head.appendChild(style);
+-  }
+-
+-  if (style.styleSheet) {
+-    style.styleSheet.cssText = css;
+-  } else {
+-    style.appendChild(document.createTextNode(css));
+-  }
++	if (ref === void 0) ref = {};
++	var insertAt = ref.insertAt;
++
++	if (!css) {
++		return;
++	}
++
++	var head = document.head || document.getElementsByTagName('head')[0];
++	var style = document.createElement('style');
++	style.type = 'text/css';
++
++	if (insertAt === 'top') {
++		if (head.firstChild) {
++			head.insertBefore(style, head.firstChild);
++		} else {
++			head.appendChild(style);
++		}
++	} else {
++		head.appendChild(style);
++	}
++
++	if (style.styleSheet) {
++		style.styleSheet.cssText = css;
++	} else {
++		style.appendChild(document.createTextNode(css));
++	}
+ }
+ 
+ import React, { Component } from 'react';
+@@ -44,15 +46,15 @@ var nativeMax = Math.max;
+  * @returns {Array} Returns the range of numbers.
+  */
+ function baseRange(start, end, step, fromRight) {
+-  var index = -1,
+-      length = nativeMax(nativeCeil((end - start) / (step || 1)), 0),
+-      result = Array(length);
+-
+-  while (length--) {
+-    result[fromRight ? length : ++index] = start;
+-    start += step;
+-  }
+-  return result;
++	var index = -1,
++		length = nativeMax(nativeCeil((end - start) / (step || 1)), 0),
++		result = Array(length);
++
++	while (length--) {
++		result[fromRight ? length : ++index] = start;
++		start += step;
++	}
++	return result;
+ }
+ 
+ var _baseRange = baseRange;
+@@ -90,28 +92,38 @@ var _baseRange = baseRange;
+  * // => true
+  */
+ function eq(value, other) {
+-  return value === other || (value !== value && other !== other);
++	return value === other || (value !== value && other !== other);
+ }
+ 
+ var eq_1 = eq;
+ 
+-var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+-
+-
+-
+-
++var commonjsGlobal =
++	typeof window !== 'undefined'
++		? window
++		: typeof global !== 'undefined'
++			? global
++			: typeof self !== 'undefined'
++				? self
++				: {};
+ 
+ function createCommonjsModule(fn, module) {
+-	return module = { exports: {} }, fn(module, module.exports), module.exports;
++	return (
++		(module = { exports: {} }), fn(module, module.exports), module.exports
++	);
+ }
+ 
+ /** Detect free variable `global` from Node.js. */
+-var freeGlobal = typeof commonjsGlobal == 'object' && commonjsGlobal && commonjsGlobal.Object === Object && commonjsGlobal;
++var freeGlobal =
++	typeof commonjsGlobal == 'object' &&
++	commonjsGlobal &&
++	commonjsGlobal.Object === Object &&
++	commonjsGlobal;
+ 
+ var _freeGlobal = freeGlobal;
+ 
+ /** Detect free variable `self`. */
+-var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
++var freeSelf =
++	typeof self == 'object' && self && self.Object === Object && self;
+ 
+ /** Used as a reference to the global object. */
+ var root = _freeGlobal || freeSelf || Function('return this')();
+@@ -147,23 +159,23 @@ var symToStringTag = _Symbol ? _Symbol.toStringTag : undefined;
+  * @returns {string} Returns the raw `toStringTag`.
+  */
+ function getRawTag(value) {
+-  var isOwn = hasOwnProperty.call(value, symToStringTag),
+-      tag = value[symToStringTag];
+-
+-  try {
+-    value[symToStringTag] = undefined;
+-    var unmasked = true;
+-  } catch (e) {}
+-
+-  var result = nativeObjectToString.call(value);
+-  if (unmasked) {
+-    if (isOwn) {
+-      value[symToStringTag] = tag;
+-    } else {
+-      delete value[symToStringTag];
+-    }
+-  }
+-  return result;
++	var isOwn = hasOwnProperty.call(value, symToStringTag),
++		tag = value[symToStringTag];
++
++	try {
++		value[symToStringTag] = undefined;
++		var unmasked = true;
++	} catch (e) {}
++
++	var result = nativeObjectToString.call(value);
++	if (unmasked) {
++		if (isOwn) {
++			value[symToStringTag] = tag;
++		} else {
++			delete value[symToStringTag];
++		}
++	}
++	return result;
+ }
+ 
+ var _getRawTag = getRawTag;
+@@ -186,7 +198,7 @@ var nativeObjectToString$1 = objectProto$1.toString;
+  * @returns {string} Returns the converted string.
+  */
+ function objectToString(value) {
+-  return nativeObjectToString$1.call(value);
++	return nativeObjectToString$1.call(value);
+ }
+ 
+ var _objectToString = objectToString;
+@@ -206,12 +218,12 @@ var symToStringTag$1 = _Symbol ? _Symbol.toStringTag : undefined;
+  * @returns {string} Returns the `toStringTag`.
+  */
+ function baseGetTag(value) {
+-  if (value == null) {
+-    return value === undefined ? undefinedTag : nullTag;
+-  }
+-  return (symToStringTag$1 && symToStringTag$1 in Object(value))
+-    ? _getRawTag(value)
+-    : _objectToString(value);
++	if (value == null) {
++		return value === undefined ? undefinedTag : nullTag;
++	}
++	return symToStringTag$1 && symToStringTag$1 in Object(value)
++		? _getRawTag(value)
++		: _objectToString(value);
+ }
+ 
+ var _baseGetTag = baseGetTag;
+@@ -242,8 +254,8 @@ var _baseGetTag = baseGetTag;
+  * // => false
+  */
+ function isObject(value) {
+-  var type = typeof value;
+-  return value != null && (type == 'object' || type == 'function');
++	var type = typeof value;
++	return value != null && (type == 'object' || type == 'function');
+ }
+ 
+ var isObject_1 = isObject;
+@@ -272,13 +284,15 @@ var proxyTag = '[object Proxy]';
+  * // => false
+  */
+ function isFunction(value) {
+-  if (!isObject_1(value)) {
+-    return false;
+-  }
+-  // The use of `Object#toString` avoids issues with the `typeof` operator
+-  // in Safari 9 which returns 'object' for typed arrays and other constructors.
+-  var tag = _baseGetTag(value);
+-  return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
++	if (!isObject_1(value)) {
++		return false;
++	}
++	// The use of `Object#toString` avoids issues with the `typeof` operator
++	// in Safari 9 which returns 'object' for typed arrays and other constructors.
++	var tag = _baseGetTag(value);
++	return (
++		tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag
++	);
+ }
+ 
+ var isFunction_1 = isFunction;
+@@ -313,8 +327,12 @@ var MAX_SAFE_INTEGER = 9007199254740991;
+  * // => false
+  */
+ function isLength(value) {
+-  return typeof value == 'number' &&
+-    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
++	return (
++		typeof value == 'number' &&
++		value > -1 &&
++		value % 1 == 0 &&
++		value <= MAX_SAFE_INTEGER
++	);
+ }
+ 
+ var isLength_1 = isLength;
+@@ -345,7 +363,7 @@ var isLength_1 = isLength;
+  * // => false
+  */
+ function isArrayLike(value) {
+-  return value != null && isLength_1(value.length) && !isFunction_1(value);
++	return value != null && isLength_1(value.length) && !isFunction_1(value);
+ }
+ 
+ var isArrayLike_1 = isArrayLike;
+@@ -365,13 +383,14 @@ var reIsUint = /^(?:0|[1-9]\d*)$/;
+  * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+  */
+ function isIndex(value, length) {
+-  var type = typeof value;
+-  length = length == null ? MAX_SAFE_INTEGER$1 : length;
+-
+-  return !!length &&
+-    (type == 'number' ||
+-      (type != 'symbol' && reIsUint.test(value))) &&
+-        (value > -1 && value % 1 == 0 && value < length);
++	var type = typeof value;
++	length = length == null ? MAX_SAFE_INTEGER$1 : length;
++
++	return (
++		!!length &&
++		(type == 'number' || (type != 'symbol' && reIsUint.test(value))) &&
++		(value > -1 && value % 1 == 0 && value < length)
++	);
+ }
+ 
+ var _isIndex = isIndex;
+@@ -387,17 +406,18 @@ var _isIndex = isIndex;
+  *  else `false`.
+  */
+ function isIterateeCall(value, index, object) {
+-  if (!isObject_1(object)) {
+-    return false;
+-  }
+-  var type = typeof index;
+-  if (type == 'number'
+-        ? (isArrayLike_1(object) && _isIndex(index, object.length))
+-        : (type == 'string' && index in object)
+-      ) {
+-    return eq_1(object[index], value);
+-  }
+-  return false;
++	if (!isObject_1(object)) {
++		return false;
++	}
++	var type = typeof index;
++	if (
++		type == 'number'
++			? isArrayLike_1(object) && _isIndex(index, object.length)
++			: type == 'string' && index in object
++	) {
++		return eq_1(object[index], value);
++	}
++	return false;
+ }
+ 
+ var _isIterateeCall = isIterateeCall;
+@@ -427,7 +447,7 @@ var _isIterateeCall = isIterateeCall;
+  * // => false
+  */
+ function isObjectLike(value) {
+-  return value != null && typeof value == 'object';
++	return value != null && typeof value == 'object';
+ }
+ 
+ var isObjectLike_1 = isObjectLike;
+@@ -453,8 +473,10 @@ var symbolTag = '[object Symbol]';
+  * // => false
+  */
+ function isSymbol(value) {
+-  return typeof value == 'symbol' ||
+-    (isObjectLike_1(value) && _baseGetTag(value) == symbolTag);
++	return (
++		typeof value == 'symbol' ||
++		(isObjectLike_1(value) && _baseGetTag(value) == symbolTag)
++	);
+ }
+ 
+ var isSymbol_1 = isSymbol;
+@@ -501,31 +523,34 @@ var freeParseInt = parseInt;
+  * // => 3.2
+  */
+ function toNumber(value) {
+-  if (typeof value == 'number') {
+-    return value;
+-  }
+-  if (isSymbol_1(value)) {
+-    return NAN;
+-  }
+-  if (isObject_1(value)) {
+-    var other = typeof value.valueOf == 'function' ? value.valueOf() : value;
+-    value = isObject_1(other) ? (other + '') : other;
+-  }
+-  if (typeof value != 'string') {
+-    return value === 0 ? value : +value;
+-  }
+-  value = value.replace(reTrim, '');
+-  var isBinary = reIsBinary.test(value);
+-  return (isBinary || reIsOctal.test(value))
+-    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+-    : (reIsBadHex.test(value) ? NAN : +value);
++	if (typeof value == 'number') {
++		return value;
++	}
++	if (isSymbol_1(value)) {
++		return NAN;
++	}
++	if (isObject_1(value)) {
++		var other =
++			typeof value.valueOf == 'function' ? value.valueOf() : value;
++		value = isObject_1(other) ? other + '' : other;
++	}
++	if (typeof value != 'string') {
++		return value === 0 ? value : +value;
++	}
++	value = value.replace(reTrim, '');
++	var isBinary = reIsBinary.test(value);
++	return isBinary || reIsOctal.test(value)
++		? freeParseInt(value.slice(2), isBinary ? 2 : 8)
++		: reIsBadHex.test(value)
++			? NAN
++			: +value;
+ }
+ 
+ var toNumber_1 = toNumber;
+ 
+ /** Used as references for various `Number` constants. */
+ var INFINITY = 1 / 0;
+-var MAX_INTEGER = 1.7976931348623157e+308;
++var MAX_INTEGER = 1.7976931348623157e308;
+ 
+ /**
+  * Converts `value` to a finite number.
+@@ -551,15 +576,15 @@ var MAX_INTEGER = 1.7976931348623157e+308;
+  * // => 3.2
+  */
+ function toFinite(value) {
+-  if (!value) {
+-    return value === 0 ? value : 0;
+-  }
+-  value = toNumber_1(value);
+-  if (value === INFINITY || value === -INFINITY) {
+-    var sign = (value < 0 ? -1 : 1);
+-    return sign * MAX_INTEGER;
+-  }
+-  return value === value ? value : 0;
++	if (!value) {
++		return value === 0 ? value : 0;
++	}
++	value = toNumber_1(value);
++	if (value === INFINITY || value === -INFINITY) {
++		var sign = value < 0 ? -1 : 1;
++		return sign * MAX_INTEGER;
++	}
++	return value === value ? value : 0;
+ }
+ 
+ var toFinite_1 = toFinite;
+@@ -572,21 +597,25 @@ var toFinite_1 = toFinite;
+  * @returns {Function} Returns the new range function.
+  */
+ function createRange(fromRight) {
+-  return function(start, end, step) {
+-    if (step && typeof step != 'number' && _isIterateeCall(start, end, step)) {
+-      end = step = undefined;
+-    }
+-    // Ensure the sign of `-0` is preserved.
+-    start = toFinite_1(start);
+-    if (end === undefined) {
+-      end = start;
+-      start = 0;
+-    } else {
+-      end = toFinite_1(end);
+-    }
+-    step = step === undefined ? (start < end ? 1 : -1) : toFinite_1(step);
+-    return _baseRange(start, end, step, fromRight);
+-  };
++	return function(start, end, step) {
++		if (
++			step &&
++			typeof step != 'number' &&
++			_isIterateeCall(start, end, step)
++		) {
++			end = step = undefined;
++		}
++		// Ensure the sign of `-0` is preserved.
++		start = toFinite_1(start);
++		if (end === undefined) {
++			end = start;
++			start = 0;
++		} else {
++			end = toFinite_1(end);
++		}
++		step = step === undefined ? (start < end ? 1 : -1) : toFinite_1(step);
++		return _baseRange(start, end, step, fromRight);
++	};
+ }
+ 
+ var _createRange = createRange;
+@@ -649,16 +678,16 @@ var range_1 = range;
+  * @returns {*} Returns the accumulated value.
+  */
+ function arrayReduce(array, iteratee, accumulator, initAccum) {
+-  var index = -1,
+-      length = array == null ? 0 : array.length;
+-
+-  if (initAccum && length) {
+-    accumulator = array[++index];
+-  }
+-  while (++index < length) {
+-    accumulator = iteratee(accumulator, array[index], index, array);
+-  }
+-  return accumulator;
++	var index = -1,
++		length = array == null ? 0 : array.length;
++
++	if (initAccum && length) {
++		accumulator = array[++index];
++	}
++	while (++index < length) {
++		accumulator = iteratee(accumulator, array[index], index, array);
++	}
++	return accumulator;
+ }
+ 
+ var _arrayReduce = arrayReduce;
+@@ -671,69 +700,207 @@ var _arrayReduce = arrayReduce;
+  * @returns {Function} Returns the new accessor function.
+  */
+ function basePropertyOf(object) {
+-  return function(key) {
+-    return object == null ? undefined : object[key];
+-  };
++	return function(key) {
++		return object == null ? undefined : object[key];
++	};
+ }
+ 
+ var _basePropertyOf = basePropertyOf;
+ 
+ /** Used to map Latin Unicode letters to basic Latin letters. */
+ var deburredLetters = {
+-  // Latin-1 Supplement block.
+-  '\xc0': 'A',  '\xc1': 'A', '\xc2': 'A', '\xc3': 'A', '\xc4': 'A', '\xc5': 'A',
+-  '\xe0': 'a',  '\xe1': 'a', '\xe2': 'a', '\xe3': 'a', '\xe4': 'a', '\xe5': 'a',
+-  '\xc7': 'C',  '\xe7': 'c',
+-  '\xd0': 'D',  '\xf0': 'd',
+-  '\xc8': 'E',  '\xc9': 'E', '\xca': 'E', '\xcb': 'E',
+-  '\xe8': 'e',  '\xe9': 'e', '\xea': 'e', '\xeb': 'e',
+-  '\xcc': 'I',  '\xcd': 'I', '\xce': 'I', '\xcf': 'I',
+-  '\xec': 'i',  '\xed': 'i', '\xee': 'i', '\xef': 'i',
+-  '\xd1': 'N',  '\xf1': 'n',
+-  '\xd2': 'O',  '\xd3': 'O', '\xd4': 'O', '\xd5': 'O', '\xd6': 'O', '\xd8': 'O',
+-  '\xf2': 'o',  '\xf3': 'o', '\xf4': 'o', '\xf5': 'o', '\xf6': 'o', '\xf8': 'o',
+-  '\xd9': 'U',  '\xda': 'U', '\xdb': 'U', '\xdc': 'U',
+-  '\xf9': 'u',  '\xfa': 'u', '\xfb': 'u', '\xfc': 'u',
+-  '\xdd': 'Y',  '\xfd': 'y', '\xff': 'y',
+-  '\xc6': 'Ae', '\xe6': 'ae',
+-  '\xde': 'Th', '\xfe': 'th',
+-  '\xdf': 'ss',
+-  // Latin Extended-A block.
+-  '\u0100': 'A',  '\u0102': 'A', '\u0104': 'A',
+-  '\u0101': 'a',  '\u0103': 'a', '\u0105': 'a',
+-  '\u0106': 'C',  '\u0108': 'C', '\u010a': 'C', '\u010c': 'C',
+-  '\u0107': 'c',  '\u0109': 'c', '\u010b': 'c', '\u010d': 'c',
+-  '\u010e': 'D',  '\u0110': 'D', '\u010f': 'd', '\u0111': 'd',
+-  '\u0112': 'E',  '\u0114': 'E', '\u0116': 'E', '\u0118': 'E', '\u011a': 'E',
+-  '\u0113': 'e',  '\u0115': 'e', '\u0117': 'e', '\u0119': 'e', '\u011b': 'e',
+-  '\u011c': 'G',  '\u011e': 'G', '\u0120': 'G', '\u0122': 'G',
+-  '\u011d': 'g',  '\u011f': 'g', '\u0121': 'g', '\u0123': 'g',
+-  '\u0124': 'H',  '\u0126': 'H', '\u0125': 'h', '\u0127': 'h',
+-  '\u0128': 'I',  '\u012a': 'I', '\u012c': 'I', '\u012e': 'I', '\u0130': 'I',
+-  '\u0129': 'i',  '\u012b': 'i', '\u012d': 'i', '\u012f': 'i', '\u0131': 'i',
+-  '\u0134': 'J',  '\u0135': 'j',
+-  '\u0136': 'K',  '\u0137': 'k', '\u0138': 'k',
+-  '\u0139': 'L',  '\u013b': 'L', '\u013d': 'L', '\u013f': 'L', '\u0141': 'L',
+-  '\u013a': 'l',  '\u013c': 'l', '\u013e': 'l', '\u0140': 'l', '\u0142': 'l',
+-  '\u0143': 'N',  '\u0145': 'N', '\u0147': 'N', '\u014a': 'N',
+-  '\u0144': 'n',  '\u0146': 'n', '\u0148': 'n', '\u014b': 'n',
+-  '\u014c': 'O',  '\u014e': 'O', '\u0150': 'O',
+-  '\u014d': 'o',  '\u014f': 'o', '\u0151': 'o',
+-  '\u0154': 'R',  '\u0156': 'R', '\u0158': 'R',
+-  '\u0155': 'r',  '\u0157': 'r', '\u0159': 'r',
+-  '\u015a': 'S',  '\u015c': 'S', '\u015e': 'S', '\u0160': 'S',
+-  '\u015b': 's',  '\u015d': 's', '\u015f': 's', '\u0161': 's',
+-  '\u0162': 'T',  '\u0164': 'T', '\u0166': 'T',
+-  '\u0163': 't',  '\u0165': 't', '\u0167': 't',
+-  '\u0168': 'U',  '\u016a': 'U', '\u016c': 'U', '\u016e': 'U', '\u0170': 'U', '\u0172': 'U',
+-  '\u0169': 'u',  '\u016b': 'u', '\u016d': 'u', '\u016f': 'u', '\u0171': 'u', '\u0173': 'u',
+-  '\u0174': 'W',  '\u0175': 'w',
+-  '\u0176': 'Y',  '\u0177': 'y', '\u0178': 'Y',
+-  '\u0179': 'Z',  '\u017b': 'Z', '\u017d': 'Z',
+-  '\u017a': 'z',  '\u017c': 'z', '\u017e': 'z',
+-  '\u0132': 'IJ', '\u0133': 'ij',
+-  '\u0152': 'Oe', '\u0153': 'oe',
+-  '\u0149': "'n", '\u017f': 's'
++	// Latin-1 Supplement block.
++	À: 'A',
++	Á: 'A',
++	Â: 'A',
++	Ã: 'A',
++	Ä: 'A',
++	Å: 'A',
++	à: 'a',
++	á: 'a',
++	â: 'a',
++	ã: 'a',
++	ä: 'a',
++	å: 'a',
++	Ç: 'C',
++	ç: 'c',
++	Ð: 'D',
++	ð: 'd',
++	È: 'E',
++	É: 'E',
++	Ê: 'E',
++	Ë: 'E',
++	è: 'e',
++	é: 'e',
++	ê: 'e',
++	ë: 'e',
++	Ì: 'I',
++	Í: 'I',
++	Î: 'I',
++	Ï: 'I',
++	ì: 'i',
++	í: 'i',
++	î: 'i',
++	ï: 'i',
++	Ñ: 'N',
++	ñ: 'n',
++	Ò: 'O',
++	Ó: 'O',
++	Ô: 'O',
++	Õ: 'O',
++	Ö: 'O',
++	Ø: 'O',
++	ò: 'o',
++	ó: 'o',
++	ô: 'o',
++	õ: 'o',
++	ö: 'o',
++	ø: 'o',
++	Ù: 'U',
++	Ú: 'U',
++	Û: 'U',
++	Ü: 'U',
++	ù: 'u',
++	ú: 'u',
++	û: 'u',
++	ü: 'u',
++	Ý: 'Y',
++	ý: 'y',
++	ÿ: 'y',
++	Æ: 'Ae',
++	æ: 'ae',
++	Þ: 'Th',
++	þ: 'th',
++	ß: 'ss',
++	// Latin Extended-A block.
++	Ā: 'A',
++	Ă: 'A',
++	Ą: 'A',
++	ā: 'a',
++	ă: 'a',
++	ą: 'a',
++	Ć: 'C',
++	Ĉ: 'C',
++	Ċ: 'C',
++	Č: 'C',
++	ć: 'c',
++	ĉ: 'c',
++	ċ: 'c',
++	č: 'c',
++	Ď: 'D',
++	Đ: 'D',
++	ď: 'd',
++	đ: 'd',
++	Ē: 'E',
++	Ĕ: 'E',
++	Ė: 'E',
++	Ę: 'E',
++	Ě: 'E',
++	ē: 'e',
++	ĕ: 'e',
++	ė: 'e',
++	ę: 'e',
++	ě: 'e',
++	Ĝ: 'G',
++	Ğ: 'G',
++	Ġ: 'G',
++	Ģ: 'G',
++	ĝ: 'g',
++	ğ: 'g',
++	ġ: 'g',
++	ģ: 'g',
++	Ĥ: 'H',
++	Ħ: 'H',
++	ĥ: 'h',
++	ħ: 'h',
++	Ĩ: 'I',
++	Ī: 'I',
++	Ĭ: 'I',
++	Į: 'I',
++	İ: 'I',
++	ĩ: 'i',
++	ī: 'i',
++	ĭ: 'i',
++	į: 'i',
++	ı: 'i',
++	Ĵ: 'J',
++	ĵ: 'j',
++	Ķ: 'K',
++	ķ: 'k',
++	ĸ: 'k',
++	Ĺ: 'L',
++	Ļ: 'L',
++	Ľ: 'L',
++	Ŀ: 'L',
++	Ł: 'L',
++	ĺ: 'l',
++	ļ: 'l',
++	ľ: 'l',
++	ŀ: 'l',
++	ł: 'l',
++	Ń: 'N',
++	Ņ: 'N',
++	Ň: 'N',
++	Ŋ: 'N',
++	ń: 'n',
++	ņ: 'n',
++	ň: 'n',
++	ŋ: 'n',
++	Ō: 'O',
++	Ŏ: 'O',
++	Ő: 'O',
++	ō: 'o',
++	ŏ: 'o',
++	ő: 'o',
++	Ŕ: 'R',
++	Ŗ: 'R',
++	Ř: 'R',
++	ŕ: 'r',
++	ŗ: 'r',
++	ř: 'r',
++	Ś: 'S',
++	Ŝ: 'S',
++	Ş: 'S',
++	Š: 'S',
++	ś: 's',
++	ŝ: 's',
++	ş: 's',
++	š: 's',
++	Ţ: 'T',
++	Ť: 'T',
++	Ŧ: 'T',
++	ţ: 't',
++	ť: 't',
++	ŧ: 't',
++	Ũ: 'U',
++	Ū: 'U',
++	Ŭ: 'U',
++	Ů: 'U',
++	Ű: 'U',
++	Ų: 'U',
++	ũ: 'u',
++	ū: 'u',
++	ŭ: 'u',
++	ů: 'u',
++	ű: 'u',
++	ų: 'u',
++	Ŵ: 'W',
++	ŵ: 'w',
++	Ŷ: 'Y',
++	ŷ: 'y',
++	Ÿ: 'Y',
++	Ź: 'Z',
++	Ż: 'Z',
++	Ž: 'Z',
++	ź: 'z',
++	ż: 'z',
++	ž: 'z',
++	Ĳ: 'IJ',
++	ĳ: 'ij',
++	Œ: 'Oe',
++	œ: 'oe',
++	ŉ: "'n",
++	ſ: 's'
+ };
+ 
+ /**
+@@ -758,14 +925,14 @@ var _deburrLetter = deburrLetter;
+  * @returns {Array} Returns the new mapped array.
+  */
+ function arrayMap(array, iteratee) {
+-  var index = -1,
+-      length = array == null ? 0 : array.length,
+-      result = Array(length);
+-
+-  while (++index < length) {
+-    result[index] = iteratee(array[index], index, array);
+-  }
+-  return result;
++	var index = -1,
++		length = array == null ? 0 : array.length,
++		result = Array(length);
++
++	while (++index < length) {
++		result[index] = iteratee(array[index], index, array);
++	}
++	return result;
+ }
+ 
+ var _arrayMap = arrayMap;
+@@ -813,19 +980,19 @@ var symbolToString = symbolProto ? symbolProto.toString : undefined;
+  * @returns {string} Returns the string.
+  */
+ function baseToString(value) {
+-  // Exit early for strings to avoid a performance hit in some environments.
+-  if (typeof value == 'string') {
+-    return value;
+-  }
+-  if (isArray_1(value)) {
+-    // Recursively convert values (susceptible to call stack limits).
+-    return _arrayMap(value, baseToString) + '';
+-  }
+-  if (isSymbol_1(value)) {
+-    return symbolToString ? symbolToString.call(value) : '';
+-  }
+-  var result = (value + '');
+-  return (result == '0' && (1 / value) == -INFINITY$1) ? '-0' : result;
++	// Exit early for strings to avoid a performance hit in some environments.
++	if (typeof value == 'string') {
++		return value;
++	}
++	if (isArray_1(value)) {
++		// Recursively convert values (susceptible to call stack limits).
++		return _arrayMap(value, baseToString) + '';
++	}
++	if (isSymbol_1(value)) {
++		return symbolToString ? symbolToString.call(value) : '';
++	}
++	var result = value + '';
++	return result == '0' && 1 / value == -INFINITY$1 ? '-0' : result;
+ }
+ 
+ var _baseToString = baseToString;
+@@ -852,7 +1019,7 @@ var _baseToString = baseToString;
+  * // => '1,2,3'
+  */
+ function toString(value) {
+-  return value == null ? '' : _baseToString(value);
++	return value == null ? '' : _baseToString(value);
+ }
+ 
+ var toString_1 = toString;
+@@ -864,7 +1031,8 @@ var reLatin = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g;
+ var rsComboMarksRange = '\\u0300-\\u036f';
+ var reComboHalfMarksRange = '\\ufe20-\\ufe2f';
+ var rsComboSymbolsRange = '\\u20d0-\\u20ff';
+-var rsComboRange = rsComboMarksRange + reComboHalfMarksRange + rsComboSymbolsRange;
++var rsComboRange =
++	rsComboMarksRange + reComboHalfMarksRange + rsComboSymbolsRange;
+ 
+ /** Used to compose unicode capture groups. */
+ var rsCombo = '[' + rsComboRange + ']';
+@@ -894,8 +1062,11 @@ var reComboMark = RegExp(rsCombo, 'g');
+  * // => 'deja vu'
+  */
+ function deburr(string) {
+-  string = toString_1(string);
+-  return string && string.replace(reLatin, _deburrLetter).replace(reComboMark, '');
++	string = toString_1(string);
++	return (
++		string &&
++		string.replace(reLatin, _deburrLetter).replace(reComboMark, '')
++	);
+ }
+ 
+ var deburr_1 = deburr;
+@@ -911,7 +1082,7 @@ var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+  * @returns {Array} Returns the words of `string`.
+  */
+ function asciiWords(string) {
+-  return string.match(reAsciiWord) || [];
++	return string.match(reAsciiWord) || [];
+ }
+ 
+ var _asciiWords = asciiWords;
+@@ -927,7 +1098,7 @@ var reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2,}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^
+  * @returns {boolean} Returns `true` if a word is found, else `false`.
+  */
+ function hasUnicodeWord(string) {
+-  return reHasUnicodeWord.test(string);
++	return reHasUnicodeWord.test(string);
+ }
+ 
+ var _hasUnicodeWord = hasUnicodeWord;
+@@ -937,16 +1108,19 @@ var rsAstralRange = '\\ud800-\\udfff';
+ var rsComboMarksRange$1 = '\\u0300-\\u036f';
+ var reComboHalfMarksRange$1 = '\\ufe20-\\ufe2f';
+ var rsComboSymbolsRange$1 = '\\u20d0-\\u20ff';
+-var rsComboRange$1 = rsComboMarksRange$1 + reComboHalfMarksRange$1 + rsComboSymbolsRange$1;
++var rsComboRange$1 =
++	rsComboMarksRange$1 + reComboHalfMarksRange$1 + rsComboSymbolsRange$1;
+ var rsDingbatRange = '\\u2700-\\u27bf';
+ var rsLowerRange = 'a-z\\xdf-\\xf6\\xf8-\\xff';
+ var rsMathOpRange = '\\xac\\xb1\\xd7\\xf7';
+ var rsNonCharRange = '\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf';
+ var rsPunctuationRange = '\\u2000-\\u206f';
+-var rsSpaceRange = ' \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000';
++var rsSpaceRange =
++	' \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000';
+ var rsUpperRange = 'A-Z\\xc0-\\xd6\\xd8-\\xde';
+ var rsVarRange = '\\ufe0e\\ufe0f';
+-var rsBreakRange = rsMathOpRange + rsNonCharRange + rsPunctuationRange + rsSpaceRange;
++var rsBreakRange =
++	rsMathOpRange + rsNonCharRange + rsPunctuationRange + rsSpaceRange;
+ 
+ /** Used to compose unicode capture groups. */
+ var rsApos = "['\u2019]";
+@@ -955,7 +1129,15 @@ var rsCombo$1 = '[' + rsComboRange$1 + ']';
+ var rsDigits = '\\d+';
+ var rsDingbat = '[' + rsDingbatRange + ']';
+ var rsLower = '[' + rsLowerRange + ']';
+-var rsMisc = '[^' + rsAstralRange + rsBreakRange + rsDigits + rsDingbatRange + rsLowerRange + rsUpperRange + ']';
++var rsMisc =
++	'[^' +
++	rsAstralRange +
++	rsBreakRange +
++	rsDigits +
++	rsDingbatRange +
++	rsLowerRange +
++	rsUpperRange +
++	']';
+ var rsFitz = '\\ud83c[\\udffb-\\udfff]';
+ var rsModifier = '(?:' + rsCombo$1 + '|' + rsFitz + ')';
+ var rsNonAstral = '[^' + rsAstralRange + ']';
+@@ -971,23 +1153,47 @@ var rsOptContrLower = '(?:' + rsApos + '(?:d|ll|m|re|s|t|ve))?';
+ var rsOptContrUpper = '(?:' + rsApos + '(?:D|LL|M|RE|S|T|VE))?';
+ var reOptMod = rsModifier + '?';
+ var rsOptVar = '[' + rsVarRange + ']?';
+-var rsOptJoin = '(?:' + rsZWJ + '(?:' + [rsNonAstral, rsRegional, rsSurrPair].join('|') + ')' + rsOptVar + reOptMod + ')*';
++var rsOptJoin =
++	'(?:' +
++	rsZWJ +
++	'(?:' +
++	[rsNonAstral, rsRegional, rsSurrPair].join('|') +
++	')' +
++	rsOptVar +
++	reOptMod +
++	')*';
+ var rsOrdLower = '\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])';
+ var rsOrdUpper = '\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])';
+ var rsSeq = rsOptVar + reOptMod + rsOptJoin;
+-var rsEmoji = '(?:' + [rsDingbat, rsRegional, rsSurrPair].join('|') + ')' + rsSeq;
++var rsEmoji =
++	'(?:' + [rsDingbat, rsRegional, rsSurrPair].join('|') + ')' + rsSeq;
+ 
+ /** Used to match complex or compound words. */
+-var reUnicodeWord = RegExp([
+-  rsUpper + '?' + rsLower + '+' + rsOptContrLower + '(?=' + [rsBreak, rsUpper, '$'].join('|') + ')',
+-  rsMiscUpper + '+' + rsOptContrUpper + '(?=' + [rsBreak, rsUpper + rsMiscLower, '$'].join('|') + ')',
+-  rsUpper + '?' + rsMiscLower + '+' + rsOptContrLower,
+-  rsUpper + '+' + rsOptContrUpper,
+-  rsOrdUpper,
+-  rsOrdLower,
+-  rsDigits,
+-  rsEmoji
+-].join('|'), 'g');
++var reUnicodeWord = RegExp(
++	[
++		rsUpper +
++			'?' +
++			rsLower +
++			'+' +
++			rsOptContrLower +
++			'(?=' +
++			[rsBreak, rsUpper, '$'].join('|') +
++			')',
++		rsMiscUpper +
++			'+' +
++			rsOptContrUpper +
++			'(?=' +
++			[rsBreak, rsUpper + rsMiscLower, '$'].join('|') +
++			')',
++		rsUpper + '?' + rsMiscLower + '+' + rsOptContrLower,
++		rsUpper + '+' + rsOptContrUpper,
++		rsOrdUpper,
++		rsOrdLower,
++		rsDigits,
++		rsEmoji
++	].join('|'),
++	'g'
++);
+ 
+ /**
+  * Splits a Unicode `string` into an array of its words.
+@@ -997,7 +1203,7 @@ var reUnicodeWord = RegExp([
+  * @returns {Array} Returns the words of `string`.
+  */
+ function unicodeWords(string) {
+-  return string.match(reUnicodeWord) || [];
++	return string.match(reUnicodeWord) || [];
+ }
+ 
+ var _unicodeWords = unicodeWords;
+@@ -1022,13 +1228,15 @@ var _unicodeWords = unicodeWords;
+  * // => ['fred', 'barney', '&', 'pebbles']
+  */
+ function words(string, pattern, guard) {
+-  string = toString_1(string);
+-  pattern = guard ? undefined : pattern;
+-
+-  if (pattern === undefined) {
+-    return _hasUnicodeWord(string) ? _unicodeWords(string) : _asciiWords(string);
+-  }
+-  return string.match(pattern) || [];
++	string = toString_1(string);
++	pattern = guard ? undefined : pattern;
++
++	if (pattern === undefined) {
++		return _hasUnicodeWord(string)
++			? _unicodeWords(string)
++			: _asciiWords(string);
++	}
++	return string.match(pattern) || [];
+ }
+ 
+ var words_1 = words;
+@@ -1047,9 +1255,13 @@ var reApos = RegExp(rsApos$1, 'g');
+  * @returns {Function} Returns the new compounder function.
+  */
+ function createCompounder(callback) {
+-  return function(string) {
+-    return _arrayReduce(words_1(deburr_1(string).replace(reApos, '')), callback, '');
+-  };
++	return function(string) {
++		return _arrayReduce(
++			words_1(deburr_1(string).replace(reApos, '')),
++			callback,
++			''
++		);
++	};
+ }
+ 
+ var _createCompounder = createCompounder;
+@@ -1075,7 +1287,7 @@ var _createCompounder = createCompounder;
+  * // => 'FOO BAR'
+  */
+ var upperCase = _createCompounder(function(result, word, index) {
+-  return result + (index ? ' ' : '') + word.toUpperCase();
++	return result + (index ? ' ' : '') + word.toUpperCase();
+ });
+ 
+ var upperCase_1 = upperCase;
+@@ -1107,10 +1319,10 @@ var upperCase_1 = upperCase;
+  * // => 3
+  */
+ function toInteger(value) {
+-  var result = toFinite_1(value),
+-      remainder = result % 1;
++	var result = toFinite_1(value),
++		remainder = result % 1;
+ 
+-  return result === result ? (remainder ? result - remainder : result) : 0;
++	return result === result ? (remainder ? result - remainder : result) : 0;
+ }
+ 
+ var toInteger_1 = toInteger;
+@@ -1126,21 +1338,22 @@ var nativeMin = Math.min;
+  * @returns {Function} Returns the new round function.
+  */
+ function createRound(methodName) {
+-  var func = Math[methodName];
+-  return function(number, precision) {
+-    number = toNumber_1(number);
+-    precision = precision == null ? 0 : nativeMin(toInteger_1(precision), 292);
+-    if (precision) {
+-      // Shift with exponential notation to avoid floating-point issues.
+-      // See [MDN](https://mdn.io/round#Examples) for more details.
+-      var pair = (toString_1(number) + 'e').split('e'),
+-          value = func(pair[0] + 'e' + (+pair[1] + precision));
+-
+-      pair = (toString_1(value) + 'e').split('e');
+-      return +(pair[0] + 'e' + (+pair[1] - precision));
+-    }
+-    return func(number);
+-  };
++	var func = Math[methodName];
++	return function(number, precision) {
++		number = toNumber_1(number);
++		precision =
++			precision == null ? 0 : nativeMin(toInteger_1(precision), 292);
++		if (precision) {
++			// Shift with exponential notation to avoid floating-point issues.
++			// See [MDN](https://mdn.io/round#Examples) for more details.
++			var pair = (toString_1(number) + 'e').split('e'),
++				value = func(pair[0] + 'e' + (+pair[1] + precision));
++
++			pair = (toString_1(value) + 'e').split('e');
++			return +(pair[0] + 'e' + (+pair[1] - precision));
++		}
++		return func(number);
++	};
+ }
+ 
+ var _createRound = createRound;
+@@ -1180,13 +1393,13 @@ var round_1 = round;
+  * @returns {Array} Returns the array of results.
+  */
+ function baseTimes(n, iteratee) {
+-  var index = -1,
+-      result = Array(n);
++	var index = -1,
++		result = Array(n);
+ 
+-  while (++index < n) {
+-    result[index] = iteratee(index);
+-  }
+-  return result;
++	while (++index < n) {
++		result[index] = iteratee(index);
++	}
++	return result;
+ }
+ 
+ var _baseTimes = baseTimes;
+@@ -1202,7 +1415,7 @@ var argsTag = '[object Arguments]';
+  * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+  */
+ function baseIsArguments(value) {
+-  return isObjectLike_1(value) && _baseGetTag(value) == argsTag;
++	return isObjectLike_1(value) && _baseGetTag(value) == argsTag;
+ }
+ 
+ var _baseIsArguments = baseIsArguments;
+@@ -1234,10 +1447,19 @@ var propertyIsEnumerable = objectProto$2.propertyIsEnumerable;
+  * _.isArguments([1, 2, 3]);
+  * // => false
+  */
+-var isArguments = _baseIsArguments(function() { return arguments; }()) ? _baseIsArguments : function(value) {
+-  return isObjectLike_1(value) && hasOwnProperty$1.call(value, 'callee') &&
+-    !propertyIsEnumerable.call(value, 'callee');
+-};
++var isArguments = _baseIsArguments(
++	(function() {
++		return arguments;
++	})()
++)
++	? _baseIsArguments
++	: function(value) {
++			return (
++				isObjectLike_1(value) &&
++				hasOwnProperty$1.call(value, 'callee') &&
++				!propertyIsEnumerable.call(value, 'callee')
++			);
++	  };
+ 
+ var isArguments_1 = isArguments;
+ 
+@@ -1255,47 +1477,53 @@ var isArguments_1 = isArguments;
+  * // => [false, false]
+  */
+ function stubFalse() {
+-  return false;
++	return false;
+ }
+ 
+ var stubFalse_1 = stubFalse;
+ 
+-var isBuffer_1 = createCommonjsModule(function (module, exports) {
+-/** Detect free variable `exports`. */
+-var freeExports = 'object' == 'object' && exports && !exports.nodeType && exports;
+-
+-/** Detect free variable `module`. */
+-var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
+-
+-/** Detect the popular CommonJS extension `module.exports`. */
+-var moduleExports = freeModule && freeModule.exports === freeExports;
+-
+-/** Built-in value references. */
+-var Buffer = moduleExports ? _root.Buffer : undefined;
+-
+-/* Built-in method references for those with the same name as other `lodash` methods. */
+-var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
+-
+-/**
+- * Checks if `value` is a buffer.
+- *
+- * @static
+- * @memberOf _
+- * @since 4.3.0
+- * @category Lang
+- * @param {*} value The value to check.
+- * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
+- * @example
+- *
+- * _.isBuffer(new Buffer(2));
+- * // => true
+- *
+- * _.isBuffer(new Uint8Array(2));
+- * // => false
+- */
+-var isBuffer = nativeIsBuffer || stubFalse_1;
+-
+-module.exports = isBuffer;
++var isBuffer_1 = createCommonjsModule(function(module, exports) {
++	/** Detect free variable `exports`. */
++	var freeExports =
++		'object' == 'object' && exports && !exports.nodeType && exports;
++
++	/** Detect free variable `module`. */
++	var freeModule =
++		freeExports &&
++		'object' == 'object' &&
++		module &&
++		!module.nodeType &&
++		module;
++
++	/** Detect the popular CommonJS extension `module.exports`. */
++	var moduleExports = freeModule && freeModule.exports === freeExports;
++
++	/** Built-in value references. */
++	var Buffer = moduleExports ? _root.Buffer : undefined;
++
++	/* Built-in method references for those with the same name as other `lodash` methods. */
++	var nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined;
++
++	/**
++	 * Checks if `value` is a buffer.
++	 *
++	 * @static
++	 * @memberOf _
++	 * @since 4.3.0
++	 * @category Lang
++	 * @param {*} value The value to check.
++	 * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
++	 * @example
++	 *
++	 * _.isBuffer(new Buffer(2));
++	 * // => true
++	 *
++	 * _.isBuffer(new Uint8Array(2));
++	 * // => false
++	 */
++	var isBuffer = nativeIsBuffer || stubFalse_1;
++
++	module.exports = isBuffer;
+ });
+ 
+ /** `Object#toString` result references. */
+@@ -1327,19 +1555,24 @@ var uint32Tag = '[object Uint32Array]';
+ 
+ /** Used to identify `toStringTag` values of typed arrays. */
+ var typedArrayTags = {};
+-typedArrayTags[float32Tag] = typedArrayTags[float64Tag] =
+-typedArrayTags[int8Tag] = typedArrayTags[int16Tag] =
+-typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] =
+-typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] =
+-typedArrayTags[uint32Tag] = true;
+-typedArrayTags[argsTag$1] = typedArrayTags[arrayTag] =
+-typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] =
+-typedArrayTags[dataViewTag] = typedArrayTags[dateTag] =
+-typedArrayTags[errorTag] = typedArrayTags[funcTag$1] =
+-typedArrayTags[mapTag] = typedArrayTags[numberTag] =
+-typedArrayTags[objectTag] = typedArrayTags[regexpTag] =
+-typedArrayTags[setTag] = typedArrayTags[stringTag] =
+-typedArrayTags[weakMapTag] = false;
++typedArrayTags[float32Tag] = typedArrayTags[float64Tag] = typedArrayTags[
++	int8Tag
++] = typedArrayTags[int16Tag] = typedArrayTags[int32Tag] = typedArrayTags[
++	uint8Tag
++] = typedArrayTags[uint8ClampedTag] = typedArrayTags[
++	uint16Tag
++] = typedArrayTags[uint32Tag] = true;
++typedArrayTags[argsTag$1] = typedArrayTags[arrayTag] = typedArrayTags[
++	arrayBufferTag
++] = typedArrayTags[boolTag] = typedArrayTags[dataViewTag] = typedArrayTags[
++	dateTag
++] = typedArrayTags[errorTag] = typedArrayTags[funcTag$1] = typedArrayTags[
++	mapTag
++] = typedArrayTags[numberTag] = typedArrayTags[objectTag] = typedArrayTags[
++	regexpTag
++] = typedArrayTags[setTag] = typedArrayTags[stringTag] = typedArrayTags[
++	weakMapTag
++] = false;
+ 
+ /**
+  * The base implementation of `_.isTypedArray` without Node.js optimizations.
+@@ -1349,8 +1582,11 @@ typedArrayTags[weakMapTag] = false;
+  * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
+  */
+ function baseIsTypedArray(value) {
+-  return isObjectLike_1(value) &&
+-    isLength_1(value.length) && !!typedArrayTags[_baseGetTag(value)];
++	return (
++		isObjectLike_1(value) &&
++		isLength_1(value.length) &&
++		!!typedArrayTags[_baseGetTag(value)]
++	);
+ }
+ 
+ var _baseIsTypedArray = baseIsTypedArray;
+@@ -1363,34 +1599,44 @@ var _baseIsTypedArray = baseIsTypedArray;
+  * @returns {Function} Returns the new capped function.
+  */
+ function baseUnary(func) {
+-  return function(value) {
+-    return func(value);
+-  };
++	return function(value) {
++		return func(value);
++	};
+ }
+ 
+ var _baseUnary = baseUnary;
+ 
+-var _nodeUtil = createCommonjsModule(function (module, exports) {
+-/** Detect free variable `exports`. */
+-var freeExports = 'object' == 'object' && exports && !exports.nodeType && exports;
+-
+-/** Detect free variable `module`. */
+-var freeModule = freeExports && 'object' == 'object' && module && !module.nodeType && module;
+-
+-/** Detect the popular CommonJS extension `module.exports`. */
+-var moduleExports = freeModule && freeModule.exports === freeExports;
+-
+-/** Detect free variable `process` from Node.js. */
+-var freeProcess = moduleExports && _freeGlobal.process;
+-
+-/** Used to access faster Node.js helpers. */
+-var nodeUtil = (function() {
+-  try {
+-    return freeProcess && freeProcess.binding && freeProcess.binding('util');
+-  } catch (e) {}
+-}());
+-
+-module.exports = nodeUtil;
++var _nodeUtil = createCommonjsModule(function(module, exports) {
++	/** Detect free variable `exports`. */
++	var freeExports =
++		'object' == 'object' && exports && !exports.nodeType && exports;
++
++	/** Detect free variable `module`. */
++	var freeModule =
++		freeExports &&
++		'object' == 'object' &&
++		module &&
++		!module.nodeType &&
++		module;
++
++	/** Detect the popular CommonJS extension `module.exports`. */
++	var moduleExports = freeModule && freeModule.exports === freeExports;
++
++	/** Detect free variable `process` from Node.js. */
++	var freeProcess = moduleExports && _freeGlobal.process;
++
++	/** Used to access faster Node.js helpers. */
++	var nodeUtil = (function() {
++		try {
++			return (
++				freeProcess &&
++				freeProcess.binding &&
++				freeProcess.binding('util')
++			);
++		} catch (e) {}
++	})();
++
++	module.exports = nodeUtil;
+ });
+ 
+ /* Node.js helper references. */
+@@ -1413,7 +1659,9 @@ var nodeIsTypedArray = _nodeUtil && _nodeUtil.isTypedArray;
+  * _.isTypedArray([]);
+  * // => false
+  */
+-var isTypedArray = nodeIsTypedArray ? _baseUnary(nodeIsTypedArray) : _baseIsTypedArray;
++var isTypedArray = nodeIsTypedArray
++	? _baseUnary(nodeIsTypedArray)
++	: _baseIsTypedArray;
+ 
+ var isTypedArray_1 = isTypedArray;
+ 
+@@ -1432,30 +1680,36 @@ var hasOwnProperty$2 = objectProto$3.hasOwnProperty;
+  * @returns {Array} Returns the array of property names.
+  */
+ function arrayLikeKeys(value, inherited) {
+-  var isArr = isArray_1(value),
+-      isArg = !isArr && isArguments_1(value),
+-      isBuff = !isArr && !isArg && isBuffer_1(value),
+-      isType = !isArr && !isArg && !isBuff && isTypedArray_1(value),
+-      skipIndexes = isArr || isArg || isBuff || isType,
+-      result = skipIndexes ? _baseTimes(value.length, String) : [],
+-      length = result.length;
+-
+-  for (var key in value) {
+-    if ((inherited || hasOwnProperty$2.call(value, key)) &&
+-        !(skipIndexes && (
+-           // Safari 9 has enumerable `arguments.length` in strict mode.
+-           key == 'length' ||
+-           // Node.js 0.10 has enumerable non-index properties on buffers.
+-           (isBuff && (key == 'offset' || key == 'parent')) ||
+-           // PhantomJS 2 has enumerable non-index properties on typed arrays.
+-           (isType && (key == 'buffer' || key == 'byteLength' || key == 'byteOffset')) ||
+-           // Skip index properties.
+-           _isIndex(key, length)
+-        ))) {
+-      result.push(key);
+-    }
+-  }
+-  return result;
++	var isArr = isArray_1(value),
++		isArg = !isArr && isArguments_1(value),
++		isBuff = !isArr && !isArg && isBuffer_1(value),
++		isType = !isArr && !isArg && !isBuff && isTypedArray_1(value),
++		skipIndexes = isArr || isArg || isBuff || isType,
++		result = skipIndexes ? _baseTimes(value.length, String) : [],
++		length = result.length;
++
++	for (var key in value) {
++		if (
++			(inherited || hasOwnProperty$2.call(value, key)) &&
++			!(
++				skipIndexes &&
++				// Safari 9 has enumerable `arguments.length` in strict mode.
++				(key == 'length' ||
++					// Node.js 0.10 has enumerable non-index properties on buffers.
++					(isBuff && (key == 'offset' || key == 'parent')) ||
++					// PhantomJS 2 has enumerable non-index properties on typed arrays.
++					(isType &&
++						(key == 'buffer' ||
++							key == 'byteLength' ||
++							key == 'byteOffset')) ||
++					// Skip index properties.
++					_isIndex(key, length))
++			)
++		) {
++			result.push(key);
++		}
++	}
++	return result;
+ }
+ 
+ var _arrayLikeKeys = arrayLikeKeys;
+@@ -1471,10 +1725,10 @@ var objectProto$4 = Object.prototype;
+  * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+  */
+ function isPrototype(value) {
+-  var Ctor = value && value.constructor,
+-      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto$4;
++	var Ctor = value && value.constructor,
++		proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto$4;
+ 
+-  return value === proto;
++	return value === proto;
+ }
+ 
+ var _isPrototype = isPrototype;
+@@ -1488,9 +1742,9 @@ var _isPrototype = isPrototype;
+  * @returns {Function} Returns the new function.
+  */
+ function overArg(func, transform) {
+-  return function(arg) {
+-    return func(transform(arg));
+-  };
++	return function(arg) {
++		return func(transform(arg));
++	};
+ }
+ 
+ var _overArg = overArg;
+@@ -1514,16 +1768,16 @@ var hasOwnProperty$3 = objectProto$5.hasOwnProperty;
+  * @returns {Array} Returns the array of property names.
+  */
+ function baseKeys(object) {
+-  if (!_isPrototype(object)) {
+-    return _nativeKeys(object);
+-  }
+-  var result = [];
+-  for (var key in Object(object)) {
+-    if (hasOwnProperty$3.call(object, key) && key != 'constructor') {
+-      result.push(key);
+-    }
+-  }
+-  return result;
++	if (!_isPrototype(object)) {
++		return _nativeKeys(object);
++	}
++	var result = [];
++	for (var key in Object(object)) {
++		if (hasOwnProperty$3.call(object, key) && key != 'constructor') {
++			result.push(key);
++		}
++	}
++	return result;
+ }
+ 
+ var _baseKeys = baseKeys;
+@@ -1557,278 +1811,309 @@ var _baseKeys = baseKeys;
+  * // => ['0', '1']
+  */
+ function keys(object) {
+-  return isArrayLike_1(object) ? _arrayLikeKeys(object) : _baseKeys(object);
++	return isArrayLike_1(object) ? _arrayLikeKeys(object) : _baseKeys(object);
+ }
+ 
+ var keys_1 = keys;
+ 
+-var css = ".styles_time_table_wrapper__1-rtp {\n  height: 100%;\n  margin: 0;\n  font-family: 'Open Sans', sans-serif;\n  color: #efefef;\n  overflow: hidden;\n}\n\n.styles_day__1cspH {\n  position: relative;\n  height: 100vh;\n  float: left;\n  background-color: #fff;\n  background-image: linear-gradient(rgba(0,0,0,.08) 50%, transparent 50%);\n}\n\n.styles_day_title__1y-BE {\n  background-color: #34495e;\n  font-size: .7rem;\n  font-weight: 600;\n  text-transform: uppercase;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  text-align: center;\n  z-index: 2;\n}\n\n.styles_hour__EXCif {\n  background-color: rgba(52, 73, 94,0.9);\n  font-size: 12px;\n  text-align: center;\n  width: 5rem;\n}\n\n.styles_event__2jA91 {\n  position: absolute;\n  width: 100%;\n  height: 15vh;\n  line-height: 15vh;\n  background-color: rgb(18, 205, 177);\n  font-size: .7em;\n  font-weight: 300;\n  justify-content: center;\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n}\n\n.styles_event_info__174ul {\n  line-height: initial;\n  text-align: center;\n}";
+-var styles = { "time_table_wrapper": "styles_time_table_wrapper__1-rtp", "day": "styles_day__1cspH", "day_title": "styles_day_title__1y-BE", "hour": "styles_hour__EXCif", "event": "styles_event__2jA91", "event_info": "styles_event_info__174ul" };
+-__$$styleInject(css);
+-
+-var classCallCheck = function (instance, Constructor) {
+-  if (!(instance instanceof Constructor)) {
+-    throw new TypeError("Cannot call a class as a function");
+-  }
++var css =
++	'.styles_time_table_wrapper__d0jai {\r\n  height: 100%;\r\n  margin: 0;\r\n  font-family: "Open Sans", sans-serif;\r\n  color: #efefef;\r\n  overflow: hidden;\r\n}\r\n\r\n.styles_day__3fRVb {\r\n  position: relative;\r\n  height: 100vh;\r\n  float: left;\r\n  background-color: #fff;\r\n  background-image: linear-gradient(rgba(0, 0, 0, 0.08) 50%, transparent 50%);\r\n}\r\n\r\n.styles_day_title__1cEAs {\r\n  background-color: #34495e;\r\n  font-size: 0.7rem;\r\n  font-weight: 600;\r\n  text-transform: uppercase;\r\n  display: flex;\r\n  justify-content: center;\r\n  flex-direction: column;\r\n  text-align: center;\r\n  z-index: 2;\r\n}\r\n\r\n.styles_hour__1K3bJ {\r\n  background-color: rgba(52, 73, 94, 0.9);\r\n  font-size: 12px;\r\n  text-align: center;\r\n  width: 3rem;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n}\r\n\r\n.styles_event__Y-gcp {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 15vh;\r\n  line-height: 15vh;\r\n  background-color: rgb(18, 205, 177);\r\n  font-size: 0.7em;\r\n  font-weight: 300;\r\n  justify-content: center;\r\n  display: flex;\r\n  flex-direction: column;\r\n  overflow: hidden;\r\n}\r\n\r\n.styles_event_info__2BC9t {\r\n  line-height: initial;\r\n  text-align: center;\r\n}\r\n';
++var styles = {
++	time_table_wrapper: 'styles_time_table_wrapper__d0jai',
++	day: 'styles_day__3fRVb',
++	day_title: 'styles_day_title__1cEAs',
++	hour: 'styles_hour__1K3bJ',
++	event: 'styles_event__Y-gcp',
++	event_info: 'styles_event_info__2BC9t'
+ };
++__$$styleInject(css);
+ 
+-var createClass = function () {
+-  function defineProperties(target, props) {
+-    for (var i = 0; i < props.length; i++) {
+-      var descriptor = props[i];
+-      descriptor.enumerable = descriptor.enumerable || false;
+-      descriptor.configurable = true;
+-      if ("value" in descriptor) descriptor.writable = true;
+-      Object.defineProperty(target, descriptor.key, descriptor);
+-    }
+-  }
+-
+-  return function (Constructor, protoProps, staticProps) {
+-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+-    if (staticProps) defineProperties(Constructor, staticProps);
+-    return Constructor;
+-  };
+-}();
+-
+-
+-
+-
+-
+-
+-
+-var _extends = Object.assign || function (target) {
+-  for (var i = 1; i < arguments.length; i++) {
+-    var source = arguments[i];
+-
+-    for (var key in source) {
+-      if (Object.prototype.hasOwnProperty.call(source, key)) {
+-        target[key] = source[key];
+-      }
+-    }
+-  }
+-
+-  return target;
++var classCallCheck = function(instance, Constructor) {
++	if (!(instance instanceof Constructor)) {
++		throw new TypeError('Cannot call a class as a function');
++	}
+ };
+ 
+-
+-
+-var inherits = function (subClass, superClass) {
+-  if (typeof superClass !== "function" && superClass !== null) {
+-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+-  }
+-
+-  subClass.prototype = Object.create(superClass && superClass.prototype, {
+-    constructor: {
+-      value: subClass,
+-      enumerable: false,
+-      writable: true,
+-      configurable: true
+-    }
+-  });
+-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
++var createClass = (function() {
++	function defineProperties(target, props) {
++		for (var i = 0; i < props.length; i++) {
++			var descriptor = props[i];
++			descriptor.enumerable = descriptor.enumerable || false;
++			descriptor.configurable = true;
++			if ('value' in descriptor) descriptor.writable = true;
++			Object.defineProperty(target, descriptor.key, descriptor);
++		}
++	}
++
++	return function(Constructor, protoProps, staticProps) {
++		if (protoProps) defineProperties(Constructor.prototype, protoProps);
++		if (staticProps) defineProperties(Constructor, staticProps);
++		return Constructor;
++	};
++})();
++
++var _extends =
++	Object.assign ||
++	function(target) {
++		for (var i = 1; i < arguments.length; i++) {
++			var source = arguments[i];
++
++			for (var key in source) {
++				if (Object.prototype.hasOwnProperty.call(source, key)) {
++					target[key] = source[key];
++				}
++			}
++		}
++
++		return target;
++	};
++
++var inherits = function(subClass, superClass) {
++	if (typeof superClass !== 'function' && superClass !== null) {
++		throw new TypeError(
++			'Super expression must either be null or a function, not ' +
++				typeof superClass
++		);
++	}
++
++	subClass.prototype = Object.create(superClass && superClass.prototype, {
++		constructor: {
++			value: subClass,
++			enumerable: false,
++			writable: true,
++			configurable: true
++		}
++	});
++	if (superClass)
++		Object.setPrototypeOf
++			? Object.setPrototypeOf(subClass, superClass)
++			: (subClass.__proto__ = superClass);
+ };
+ 
++var possibleConstructorReturn = function(self, call) {
++	if (!self) {
++		throw new ReferenceError(
++			"this hasn't been initialised - super() hasn't been called"
++		);
++	}
+ 
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-var possibleConstructorReturn = function (self, call) {
+-  if (!self) {
+-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+-  }
+-
+-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
++	return call && (typeof call === 'object' || typeof call === 'function')
++		? call
++		: self;
+ };
+ 
++var toConsumableArray = function(arr) {
++	if (Array.isArray(arr)) {
++		for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++)
++			arr2[i] = arr[i];
+ 
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-
+-var toConsumableArray = function (arr) {
+-  if (Array.isArray(arr)) {
+-    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+-
+-    return arr2;
+-  } else {
+-    return Array.from(arr);
+-  }
++		return arr2;
++	} else {
++		return Array.from(arr);
++	}
+ };
+ 
+-var TimeTable = function (_Component) {
+-  inherits(TimeTable, _Component);
+-
+-  function TimeTable() {
+-    classCallCheck(this, TimeTable);
+-
+-    var _this = possibleConstructorReturn(this, (TimeTable.__proto__ || Object.getPrototypeOf(TimeTable)).call(this));
+-
+-    _this.state = {
+-      rowHeight: 0
+-    };
+-    return _this;
+-  }
+-
+-  createClass(TimeTable, [{
+-    key: 'componentWillMount',
+-    value: function componentWillMount() {
+-      this.setState({
+-        rowHeight: this.getRowHeight()
+-      });
+-    }
+-  }, {
+-    key: 'getRowHeight',
+-    value: function getRowHeight() {
+-      var numberOfRows = this.props.hoursInterval[1] - this.props.hoursInterval[0] + 1;
+-
+-      return round_1(100 / numberOfRows, 5);
+-    }
+-  }, {
+-    key: 'getEventPositionStyles',
+-    value: function getEventPositionStyles(event) {
+-      var startOfDay = event.startTime.clone().set('hour', this.props.hoursInterval[0]).set('minutes', 0);
+-
+-      var minutesFromStartOfDay = round_1(event.startTime.diff(startOfDay) / 1000 / 60);
+-      var minutes = round_1(event.endTime.diff(event.startTime) / 1000 / 60);
+-      return {
+-        height: minutes * this.state.rowHeight / 60 + 'vh',
+-        marginTop: minutesFromStartOfDay * this.state.rowHeight / 60 + 'vh'
+-      };
+-    }
+-  }, {
+-    key: 'renderDay',
+-    value: function renderDay(day, index) {
+-      return React.createElement(
+-        'div',
+-        { className: styles.day + ' ' + day,
+-          style: {
+-            backgroundSize: '1px ' + 2 * this.state.rowHeight + 'vh',
+-            width: 'calc((100% - 5rem) / ' + keys_1(this.props.events).length + ')'
+-          },
+-          key: day + '-' + index },
+-        React.createElement(
+-          'div',
+-          { className: styles.day_title,
+-            style: { height: this.state.rowHeight + 'vh' } },
+-          this.props.getDayLabel(day)
+-        ),
+-        this.renderDayEvents(day)
+-      );
+-    }
+-  }, {
+-    key: 'renderDayEvents',
+-    value: function renderDayEvents(day) {
+-      var _this2 = this;
+-
+-      return (this.props.events[day] || []).map(function (event) {
+-        return _this2.props.renderEvent.apply(_this2, [event, {
+-          className: styles.event + ' ' + event.type,
+-          style: _this2.getEventPositionStyles(event)
+-        }, styles]);
+-      });
+-    }
+-  }, {
+-    key: 'renderHours',
+-    value: function renderHours() {
+-      var _this3 = this;
+-
+-      return range_1.apply(undefined, toConsumableArray(this.props.hoursInterval)).map(function (hour) {
+-        return _this3.props.renderHour.apply(_this3, [hour + ':00', {
+-          className: styles.hour,
+-          style: { height: _this3.state.rowHeight + 'vh' }
+-        }, styles]);
+-      });
+-    }
+-  }, {
+-    key: 'render',
+-    value: function render() {
+-      var _this4 = this;
+-
+-      return React.createElement(
+-        'div',
+-        { className: styles.time_table_wrapper },
+-        React.createElement(
+-          'div',
+-          { className: styles.day },
+-          React.createElement(
+-            'div',
+-            { className: styles.day_title,
+-              style: { height: this.state.rowHeight + 'vh' } },
+-            this.props.timeLabel
+-          ),
+-          this.renderHours()
+-        ),
+-        keys_1(this.props.events).map(function (day, index) {
+-          return _this4.renderDay(day, index);
+-        })
+-      );
+-    }
+-  }]);
+-  return TimeTable;
+-}(Component);
++var TimeTable = (function(_Component) {
++	inherits(TimeTable, _Component);
++
++	function TimeTable() {
++		classCallCheck(this, TimeTable);
++
++		var _this = possibleConstructorReturn(
++			this,
++			(TimeTable.__proto__ || Object.getPrototypeOf(TimeTable)).call(this)
++		);
++
++		_this.state = {
++			rowHeight: 0
++		};
++		return _this;
++	}
++
++	createClass(TimeTable, [
++		{
++			key: 'componentWillMount',
++			value: function componentWillMount() {
++				this.setState({
++					rowHeight: this.getRowHeight()
++				});
++			}
++		},
++		{
++			key: 'getRowHeight',
++			value: function getRowHeight() {
++				var numberOfRows =
++					this.props.hoursInterval[1] -
++					this.props.hoursInterval[0] +
++					1;
++
++				return round_1(100 / numberOfRows, 5);
++			}
++		},
++		{
++			key: 'getEventPositionStyles',
++			value: function getEventPositionStyles(event) {
++				var startOfDay = event.startTime
++					.clone()
++					.set('hour', this.props.hoursInterval[0])
++					.set('minutes', 0);
++
++				var minutesFromStartOfDay = round_1(
++					event.startTime.diff(startOfDay) / 1000 / 60
++				);
++				var minutes = round_1(
++					event.endTime.diff(event.startTime) / 1000 / 60
++				);
++				return {
++					height: (minutes * this.state.rowHeight) / 60 + 'vh',
++					marginTop:
++						(minutesFromStartOfDay * this.state.rowHeight) / 60 +
++						'vh'
++				};
++			}
++		},
++		{
++			key: 'renderDay',
++			value: function renderDay(day, index) {
++				return React.createElement(
++					'div',
++					{
++						className: styles.day + ' ' + day,
++						style: {
++							backgroundSize:
++								'1px ' + 2 * this.state.rowHeight + 'vh',
++							width:
++								'calc((100% - 5rem) / ' +
++								keys_1(this.props.events).length +
++								')'
++						},
++						key: day + '-' + index
++					},
++					React.createElement(
++						'div',
++						{
++							className: styles.day_title,
++							style: { height: this.state.rowHeight + 'vh' }
++						},
++						this.props.getDayLabel(day)
++					),
++					this.renderDayEvents(day)
++				);
++			}
++		},
++		{
++			key: 'renderDayEvents',
++			value: function renderDayEvents(day) {
++				var _this2 = this;
++
++				return (this.props.events[day] || []).map(function(event) {
++					return _this2.props.renderEvent.apply(_this2, [
++						event,
++						{
++							className: styles.event + ' ' + event.type,
++							style: _this2.getEventPositionStyles(event)
++						},
++						styles
++					]);
++				});
++			}
++		},
++		{
++			key: 'renderHours',
++			value: function renderHours() {
++				var _this3 = this;
++
++				return range_1
++					.apply(
++						undefined,
++						toConsumableArray(this.props.hoursInterval)
++					)
++					.map(function(hour) {
++						return _this3.props.renderHour.apply(_this3, [
++							hour + ':00',
++							{
++								className: styles.hour,
++								style: { height: _this3.state.rowHeight + 'vh' }
++							},
++							styles
++						]);
++					});
++			}
++		},
++		{
++			key: 'render',
++			value: function render() {
++				var _this4 = this;
++
++				return React.createElement(
++					'div',
++					{ className: styles.time_table_wrapper },
++					React.createElement(
++						'div',
++						{ className: styles.day },
++						React.createElement(
++							'div',
++							{
++								className: styles.day_title,
++								style: { height: this.state.rowHeight + 'vh' }
++							},
++							this.props.timeLabel
++						),
++						this.renderHours()
++					),
++					keys_1(this.props.events).map(function(day, index) {
++						return _this4.renderDay(day, index);
++					})
++				);
++			}
++		}
++	]);
++	return TimeTable;
++})(Component);
+ 
+ TimeTable.propTypes = {
+-  hoursInterval: PropTypes.array,
+-  events: PropTypes.object.isRequired,
+-  renderEvent: PropTypes.func,
+-  getDayLabel: PropTypes.func,
+-  timeLabel: PropTypes.string
++	hoursInterval: PropTypes.array,
++	events: PropTypes.object.isRequired,
++	renderEvent: PropTypes.func,
++	getDayLabel: PropTypes.func,
++	timeLabel: PropTypes.string
+ };
+ 
+ TimeTable.defaultProps = {
+-  hoursInterval: [7, 24],
+-  timeLabel: 'Time',
+-  renderHour: function renderHour(hour, defaultAttributes) {
+-    return React.createElement(
+-      'div',
+-      _extends({}, defaultAttributes, {
+-        key: hour }),
+-      hour
+-    );
+-  },
+-  renderEvent: function renderEvent(event, defaultAttributes, styles$$1) {
+-    return React.createElement(
+-      'div',
+-      _extends({}, defaultAttributes, {
+-        title: event.name,
+-        key: event.id }),
+-      React.createElement(
+-        'span',
+-        { className: styles$$1.event_info },
+-        event.name
+-      ),
+-      React.createElement(
+-        'span',
+-        { className: styles$$1.event_info },
+-        event.startTime.format('HH:mm'),
+-        ' - ',
+-        event.endTime.format('HH:mm')
+-      )
+-    );
+-  },
+-
+-  getDayLabel: function getDayLabel(day) {
+-    return upperCase_1(day);
+-  }
++	hoursInterval: [7, 24],
++	timeLabel: 'Time',
++	renderHour: function renderHour(hour, defaultAttributes) {
++		return React.createElement(
++			'div',
++			_extends({}, defaultAttributes, { key: hour }),
++			hour
++		);
++	},
++	renderEvent: function renderEvent(event, defaultAttributes, styles$$1) {
++		return React.createElement(
++			'div',
++			_extends({}, defaultAttributes, {
++				title: event.name,
++				key: event.id
++			}),
++			React.createElement(
++				'span',
++				{ className: styles$$1.event_info },
++				event.name
++			),
++			React.createElement(
++				'span',
++				{ className: styles$$1.event_info },
++				event.startTime.format('HH:mm'),
++				' - ',
++				event.endTime.format('HH:mm')
++			)
++		);
++	},
++
++	getDayLabel: function getDayLabel(day) {
++		return upperCase_1(day);
++	}
+ };
+ 
+ export default TimeTable;
+--- a/node_modules/react-timetable-events/dist/index.js
++++ b/node_modules/react-timetable-events/dist/index.js
+@@ -1567,8 +1567,8 @@ function keys(object) {
+ 
+ var keys_1 = keys;
+ 
+-var css = ".styles_time_table_wrapper__1-rtp {\n  height: 100%;\n  margin: 0;\n  font-family: 'Open Sans', sans-serif;\n  color: #efefef;\n  overflow: hidden;\n}\n\n.styles_day__1cspH {\n  position: relative;\n  height: 100vh;\n  float: left;\n  background-color: #fff;\n  background-image: linear-gradient(rgba(0,0,0,.08) 50%, transparent 50%);\n}\n\n.styles_day_title__1y-BE {\n  background-color: #34495e;\n  font-size: .7rem;\n  font-weight: 600;\n  text-transform: uppercase;\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  text-align: center;\n  z-index: 2;\n}\n\n.styles_hour__EXCif {\n  background-color: rgba(52, 73, 94,0.9);\n  font-size: 12px;\n  text-align: center;\n  width: 5rem;\n}\n\n.styles_event__2jA91 {\n  position: absolute;\n  width: 100%;\n  height: 15vh;\n  line-height: 15vh;\n  background-color: rgb(18, 205, 177);\n  font-size: .7em;\n  font-weight: 300;\n  justify-content: center;\n  display: flex;\n  flex-direction: column;\n  overflow: hidden;\n}\n\n.styles_event_info__174ul {\n  line-height: initial;\n  text-align: center;\n}";
+-var styles = { "time_table_wrapper": "styles_time_table_wrapper__1-rtp", "day": "styles_day__1cspH", "day_title": "styles_day_title__1y-BE", "hour": "styles_hour__EXCif", "event": "styles_event__2jA91", "event_info": "styles_event_info__174ul" };
++var css = ".styles_time_table_wrapper__d0jai {\r\n  height: 100%;\r\n  margin: 0;\r\n  font-family: \"Open Sans\", sans-serif;\r\n  color: #efefef;\r\n  overflow: hidden;\r\n}\r\n\r\n.styles_day__3fRVb {\r\n  position: relative;\r\n  height: 100vh;\r\n  float: left;\r\n  background-color: #fff;\r\n  background-image: linear-gradient(rgba(0, 0, 0, 0.08) 50%, transparent 50%);\r\n}\r\n\r\n.styles_day_title__1cEAs {\r\n  background-color: #34495e;\r\n  font-size: 0.7rem;\r\n  font-weight: 600;\r\n  text-transform: uppercase;\r\n  display: flex;\r\n  justify-content: center;\r\n  flex-direction: column;\r\n  text-align: center;\r\n  z-index: 2;\r\n}\r\n\r\n.styles_hour__1K3bJ {\r\n  background-color: rgba(52, 73, 94, 0.9);\r\n  font-size: 12px;\r\n  text-align: center;\r\n  width: 3rem;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n}\r\n\r\n.styles_event__Y-gcp {\r\n  position: absolute;\r\n  width: 100%;\r\n  height: 15vh;\r\n  line-height: 15vh;\r\n  background-color: rgb(18, 205, 177);\r\n  font-size: 0.7em;\r\n  font-weight: 300;\r\n  justify-content: center;\r\n  display: flex;\r\n  flex-direction: column;\r\n  overflow: hidden;\r\n}\r\n\r\n.styles_event_info__2BC9t {\r\n  line-height: initial;\r\n  text-align: center;\r\n}\r\n";
++var styles = { "time_table_wrapper": "styles_time_table_wrapper__d0jai", "day": "styles_day__3fRVb", "day_title": "styles_day_title__1cEAs", "hour": "styles_hour__1K3bJ", "event": "styles_event__Y-gcp", "event_info": "styles_event_info__2BC9t" };
+ __$$styleInject(css);
+ 
+ var classCallCheck = function (instance, Constructor) {
+@@ -1694,90 +1694,96 @@ var TimeTable = function (_Component) {
+   }
+ 
+   createClass(TimeTable, [{
+-    key: 'componentWillMount',
++    key: "componentWillMount",
+     value: function componentWillMount() {
+       this.setState({
+         rowHeight: this.getRowHeight()
+       });
+     }
+   }, {
+-    key: 'getRowHeight',
++    key: "getRowHeight",
+     value: function getRowHeight() {
+       var numberOfRows = this.props.hoursInterval[1] - this.props.hoursInterval[0] + 1;
+ 
+       return round_1(100 / numberOfRows, 5);
+     }
+   }, {
+-    key: 'getEventPositionStyles',
++    key: "getEventPositionStyles",
+     value: function getEventPositionStyles(event) {
+-      var startOfDay = event.startTime.clone().set('hour', this.props.hoursInterval[0]).set('minutes', 0);
++      var startOfDay = event.startTime.clone().set("hour", this.props.hoursInterval[0]).set("minutes", 0);
+ 
+       var minutesFromStartOfDay = round_1(event.startTime.diff(startOfDay) / 1000 / 60);
+       var minutes = round_1(event.endTime.diff(event.startTime) / 1000 / 60);
+       return {
+-        height: minutes * this.state.rowHeight / 60 + 'vh',
+-        marginTop: minutesFromStartOfDay * this.state.rowHeight / 60 + 'vh'
++        height: minutes * this.state.rowHeight / 60 + "vh",
++        marginTop: minutesFromStartOfDay * this.state.rowHeight / 60 + "vh"
+       };
+     }
+   }, {
+-    key: 'renderDay',
++    key: "renderDay",
+     value: function renderDay(day, index) {
+       return React__default.createElement(
+-        'div',
+-        { className: styles.day + ' ' + day,
++        "div",
++        {
++          className: styles.day + " " + day,
+           style: {
+-            backgroundSize: '1px ' + 2 * this.state.rowHeight + 'vh',
+-            width: 'calc((100% - 5rem) / ' + keys_1(this.props.events).length + ')'
++            backgroundSize: "1px " + 2 * this.state.rowHeight + "vh",
++            width: "calc((100% - 5rem) / " + keys_1(this.props.events).length + ")"
+           },
+-          key: day + '-' + index },
++          key: day + "-" + index
++        },
+         React__default.createElement(
+-          'div',
+-          { className: styles.day_title,
+-            style: { height: this.state.rowHeight + 'vh' } },
++          "div",
++          {
++            className: styles.day_title,
++            style: { height: this.state.rowHeight + "vh" }
++          },
+           this.props.getDayLabel(day)
+         ),
+         this.renderDayEvents(day)
+       );
+     }
+   }, {
+-    key: 'renderDayEvents',
++    key: "renderDayEvents",
+     value: function renderDayEvents(day) {
+       var _this2 = this;
+ 
+       return (this.props.events[day] || []).map(function (event) {
+         return _this2.props.renderEvent.apply(_this2, [event, {
+-          className: styles.event + ' ' + event.type,
++          className: styles.event + " " + event.type,
+           style: _this2.getEventPositionStyles(event)
+         }, styles]);
+       });
+     }
+   }, {
+-    key: 'renderHours',
++    key: "renderHours",
+     value: function renderHours() {
+       var _this3 = this;
+ 
+       return range_1.apply(undefined, toConsumableArray(this.props.hoursInterval)).map(function (hour) {
+-        return _this3.props.renderHour.apply(_this3, [hour + ':00', {
++        return _this3.props.renderHour.apply(_this3, [hour + ":00", {
+           className: styles.hour,
+-          style: { height: _this3.state.rowHeight + 'vh' }
++          style: { height: _this3.state.rowHeight + "vh" }
+         }, styles]);
+       });
+     }
+   }, {
+-    key: 'render',
++    key: "render",
+     value: function render() {
+       var _this4 = this;
+ 
+       return React__default.createElement(
+-        'div',
++        "div",
+         { className: styles.time_table_wrapper },
+         React__default.createElement(
+-          'div',
++          "div",
+           { className: styles.day },
+           React__default.createElement(
+-            'div',
+-            { className: styles.day_title,
+-              style: { height: this.state.rowHeight + 'vh' } },
++            "div",
++            {
++              className: styles.day_title,
++              style: { height: this.state.rowHeight + "vh" }
++            },
+             this.props.timeLabel
+           ),
+           this.renderHours()
+@@ -1801,32 +1807,29 @@ TimeTable.propTypes = {
+ 
+ TimeTable.defaultProps = {
+   hoursInterval: [7, 24],
+-  timeLabel: 'Time',
++  timeLabel: "Time",
+   renderHour: function renderHour(hour, defaultAttributes) {
+     return React__default.createElement(
+-      'div',
+-      _extends({}, defaultAttributes, {
+-        key: hour }),
++      "div",
++      _extends({}, defaultAttributes, { key: hour }),
+       hour
+     );
+   },
+   renderEvent: function renderEvent(event, defaultAttributes, styles$$1) {
+     return React__default.createElement(
+-      'div',
+-      _extends({}, defaultAttributes, {
+-        title: event.name,
+-        key: event.id }),
++      "div",
++      _extends({}, defaultAttributes, { title: event.name, key: event.id }),
+       React__default.createElement(
+-        'span',
++        "span",
+         { className: styles$$1.event_info },
+         event.name
+       ),
+       React__default.createElement(
+-        'span',
++        "span",
+         { className: styles$$1.event_info },
+-        event.startTime.format('HH:mm'),
+-        ' - ',
+-        event.endTime.format('HH:mm')
++        event.startTime.format("HH:mm"),
++        " - ",
++        event.endTime.format("HH:mm")
+       )
+     );
+   },
