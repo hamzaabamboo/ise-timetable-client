@@ -20,6 +20,7 @@ export const getInfo = () => dispatch =>
 			}
 		)
 		.then(res => {
+			console.log(res);
 			dispatch(fetchInfo(res.data.studentInfo));
 		})
 		.catch(err => {
@@ -27,8 +28,7 @@ export const getInfo = () => dispatch =>
 		});
 
 export const fetchInfo = data => {
-	let { en_name } = data;
-	let { en_majorName } = data;
+	let { en_name, en_majorName, photo } = data;
 	switch(en_majorName.toLowerCase()) {
 		case 'information and communication engineering': en_majorName = 'ICE'; break;
 		case 'nano engineering': en_majorName = 'NANO'; break;
@@ -40,7 +40,8 @@ export const fetchInfo = data => {
 		type: FETCH_INFO,
 		payload: {
 			name: en_name.substring(en_name.indexOf('.')+1),
-			major: en_majorName
+			major: en_majorName,
+			photo: photo
 		}
 	};
 };

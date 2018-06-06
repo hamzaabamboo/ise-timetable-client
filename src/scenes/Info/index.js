@@ -8,12 +8,23 @@ class Info extends Component {
 	}
 
 	render() {
-		let { name, major } = this.props;
+		let { name, major, photo } = this.props;
 		return (
 			<div className="container">
 				<h1>Information</h1>
-				<h2>{`${name} ${major}`}</h2>
+				<div className="card">
+					<img src={photo} alt="your pic" style={{'width': 'auto'}} />
+					<p>{`Name: ${name}`}</p>
+					<p className="title">{`Major: ${major}`}</p>
+					<p>Chulalongkorn University</p>
+					<p><button>Blessing</button></p>
+				</div>
+				<div className="card">
+					
+					
+				</div>
 			</div>
+			
 		);
 	}
 }
@@ -21,7 +32,8 @@ class Info extends Component {
 const mapStateToProps = state => {
 	return {
 		name: state.info.name,
-		major: state.info.major
+		major: state.info.major,
+		photo: state.info.photo
 	};
 };
 
