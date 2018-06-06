@@ -7,3 +7,6 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 //INFO
 export const FETCH_INFO = 'FETCH_INFO';
+//TIMETABLE
+export const SEARCH_RESULT = 'SEARCH_RESULT';
+export const CLEAR_RESULT = 'CLEAR_RESULT';
