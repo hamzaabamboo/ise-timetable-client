@@ -40,6 +40,9 @@ class Sidenav extends React.Component {
 			}, 300);
 		}
 	}
+	componentWillUnmount() {
+		window.removeEventListener('resize', () => this.doSizeCheck(), true);
+	}
 
 	doSizeCheck(initial) {
 		const isMobile = window.innerWidth < 640;
