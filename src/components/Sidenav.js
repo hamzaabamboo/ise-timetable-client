@@ -5,7 +5,22 @@ import React from 'react';
 import store from '../store';
 import { push } from 'react-router-redux';
 import { setDrawer } from '../actions/ui';
+import { logout } from '../actions/auth';
 
+const paths = [
+	{
+		path: '/',
+		text: 'Home'
+	},
+	{
+		path: '/info',
+		text: 'Basic Info'
+	},
+	{
+		path: '/timetable',
+		text: 'Timetable'
+	}
+];
 class Sidenav extends React.Component {
 	state = {
 		isMobile: true
@@ -40,6 +55,7 @@ class Sidenav extends React.Component {
 	}
 
 	render() {
+		let { isLoggedIn } = this.props;
 		return (
 			<Drawer
 				open={this.props.open}
@@ -49,17 +65,25 @@ class Sidenav extends React.Component {
 			>
 				{/* <DrawerHeader>Main Navigation</DrawerHeader> */}
 				<DrawerContent>
-					<ListItem onClick={() => store.dispatch(push('/'))}>
-						<ListItemText>Basic Info</ListItemText>
-					</ListItem>
-					<ListItem
-						onClick={() => store.dispatch(push('/timetable'))}
-					>
-						<ListItemText>Timetable</ListItemText>
-					</ListItem>
-					<ListItem>
-						<ListItemText>Logout</ListItemText>
-					</ListItem>
+					{paths.map(e => (
+						<ListItem
+							key={e.path}
+							onClick={() => store.dispatch(push(e.path))}
+						>
+							<ListItemText>{e.text}</ListItemText>
+						</ListItem>
+					))}
+					{isLoggedIn ? (
+						<ListItem onClick={() => store.dispatch(logout())}>
+							<ListItemText>Logout</ListItemText>
+						</ListItem>
+					) : (
+						<ListItem
+							onClick={() => store.dispatch(push('/login'))}
+						>
+							<ListItemText>Login</ListItemText>
+						</ListItem>
+					)}
 				</DrawerContent>
 			</Drawer>
 		);
@@ -68,7 +92,8 @@ class Sidenav extends React.Component {
 
 const mapStateToProps = state => {
 	return {
-		open: state.ui.drawer
+		open: state.ui.drawer,
+		isLoggedIn: state.auth.isLoggedIn
 	};
 };
 

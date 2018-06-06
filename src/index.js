@@ -9,6 +9,7 @@ import AppRouter from './routers/AppRouter';
 import store from './store';
 import { RMWCProvider } from 'rmwc/Provider';
 import DocumentTitle from 'react-document-title';
+
 ReactDOM.render(
 	<DocumentTitle title={'ISE Timetable v2.0.0-alpha'}>
 		<RMWCProvider>
