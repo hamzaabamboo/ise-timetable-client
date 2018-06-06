@@ -19,8 +19,8 @@ class Info extends Component {
 					<p>Chulalongkorn University</p>
 					<p><button className='blackBG'>Blessing</button></p>
 				</div>
+				<div className="card" />
 			</div>
-			
 		);
 	}
 }

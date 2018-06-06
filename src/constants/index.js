@@ -10,3 +10,4 @@ export const FETCH_INFO = 'FETCH_INFO';
 //TIMETABLE
 export const SEARCH_RESULT = 'SEARCH_RESULT';
 export const CLEAR_RESULT = 'CLEAR_RESULT';
+export const ADD_SUBJECT = 'ADD_SUBJECT';

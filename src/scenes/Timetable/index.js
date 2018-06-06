@@ -33,6 +33,7 @@ class TimetablePage extends Component {
 					type: 'Lecture',
 					building: 'ENG 2',
 					room: '302',
+					section: '1',
 					startTime: moment('2018-02-23T11:30:00'),
 					endTime: moment('2018-02-23T13:30:00')
 				}
