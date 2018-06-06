@@ -12,5 +12,7 @@ export const toNum = num => {
 			return '5';
 		case 6:
 			return '6';
+		default:
+			return num;
 	}
 };
