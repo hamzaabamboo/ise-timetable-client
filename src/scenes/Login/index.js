@@ -11,7 +11,10 @@ class Login extends Component {
 		return (
 			<div className="container">
 				<h1>Login</h1>
-				<h4>Please login with Reg Chula credentials</h4>
+				<p>
+					Please login with Reg Chula credentials. Student ID and
+					password are not sent to/kept in the server.
+				</p>
 				<LoginForm />
 			</div>
 		);

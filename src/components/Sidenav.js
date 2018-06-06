@@ -19,6 +19,10 @@ const paths = [
 	{
 		path: '/timetable',
 		text: 'Timetable'
+	},
+	{
+		path: '/timetable/create',
+		text: 'Create Timetable'
 	}
 ];
 class Sidenav extends React.Component {

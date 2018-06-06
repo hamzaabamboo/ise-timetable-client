@@ -5,6 +5,7 @@ import Home from '../scenes/Home';
 import Timetable from '../scenes/Timetable';
 import Info from '../scenes/Info';
 import Login from '../scenes/Login';
+import TimetableCreate from '../scenes/TimetableCreator';
 import Page from './Page';
 import PrivatePage from './PrivatePage';
 import { history } from '../store';
@@ -13,7 +14,8 @@ const AppRouter = () => (
 	<Router history={history}>
 		<Switch>
 			<PrivatePage path="/info" component={Info} />
-			<PrivatePage path="/timetable" component={Timetable} />
+			<PrivatePage path="/timetable/create" component={TimetableCreate} />
+			<PrivatePage exact path="/timetable" component={Timetable} />
 			<Page path="/login" component={Login} />
 			<Page path="/" component={Home} />
 		</Switch>

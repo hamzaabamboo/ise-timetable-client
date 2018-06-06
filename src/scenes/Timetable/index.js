@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import Timetable from 'react-timetable-events';
 import moment from 'moment';
+import store from '../../store';
+import { getTimetable } from '../../actions/timetable';
+import { renderEvent } from '../../utils/timetable';
 
 class TimetablePage extends Component {
+	componentDidMount() {
+		store.dispatch(getTimetable());
+	}
 	renderEvent(event, defaultAttributes, styles) {
 		return (
 			<div {...defaultAttributes} title={event.name} key={event.id}>
@@ -42,7 +48,7 @@ class TimetablePage extends Component {
 				<Timetable
 					events={events}
 					hoursInterval={[8, 18]}
-					renderEvent={this.renderEvent}
+					renderEvent={renderEvent}
 				/>
 			</div>
 		);
