@@ -22,6 +22,7 @@ export const login = (username, password) => dispatch =>
 			}
 		)
 		.then(res => {
+			console.log(res);
 			if (res.data.code === 400) dispatch(loginFail(res.data));
 			else dispatch(loginSuccess(res.data.data));
 		})
