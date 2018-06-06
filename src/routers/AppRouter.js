@@ -6,13 +6,14 @@ import Timetable from '../scenes/Timetable';
 import Info from '../scenes/Info';
 import Login from '../scenes/Login';
 import Page from './Page';
+import PrivatePage from './PrivatePage';
 import { history } from '../store';
 
 const AppRouter = () => (
 	<Router history={history}>
 		<Switch>
-			<Page path="/info" component={Info} />
-			<Page path="/timetable" component={Timetable} />
+			<PrivatePage path="/info" component={Info} />
+			<PrivatePage path="/timetable" component={Timetable} />
 			<Page path="/login" component={Login} />
 			<Page path="/" component={Home} />
 		</Switch>
