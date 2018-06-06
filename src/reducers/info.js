@@ -2,7 +2,8 @@ import { FETCH_INFO } from '../constants';
 
 const initialState = {
 	name: '',
-	major: ''
+	major: '',
+	photo: ''
 };
 
 export default (state = initialState, action) => {
@@ -11,6 +12,7 @@ export default (state = initialState, action) => {
 			return {
 				name: action.payload.name,
 				major: action.payload.major,
+				photo: action.payload.photo
 			};
 		default:
 			return state;
