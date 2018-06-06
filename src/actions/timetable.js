@@ -1,6 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 import store from '../store';
+import { SEARCH_RESULT, CLEAR_RESULT } from '../constants';
 
 const proxy = 'https://cryptic-headland-94862.herokuapp.com/';
 const path = proxy + 'http://www3.reg.chula.ac.th/cureg-test/web/index.php?r=';
@@ -20,7 +21,6 @@ export const getTimetable = () => dispatch =>
 		)
 		.then(res => {
 			//Handle Response
-			dispatch(search('2190101'));
 		})
 		.catch(err => {
 			//Handle Error (Later)
@@ -42,8 +42,28 @@ export const search = query => dispatch =>
 		)
 		.then(res => {
 			//Handle Response
-			console.log(res.data.data);
+			dispatch(updateResults(res.data.data));
 		})
 		.catch(err => {
 			//Handle Error (Later)
 		});
+
+export const updateResults = data => {
+	const searchResults = data.map(e => {
+		return {
+			id: e.COURSECODE,
+			name: e.COURSENAME,
+			section: e.SECTION,
+			type: e.TEACHTYPE,
+			building: e.BUILDING,
+			room: e.ROOM,
+			schedule: e.FORMAT_SCHEDULE
+		};
+	});
+	return { type: SEARCH_RESULT, payload: { searchResults } };
+};
+
+export const clear = () => ({
+	type: CLEAR_RESULT,
+	payload: { searchResults: [] }
+});
