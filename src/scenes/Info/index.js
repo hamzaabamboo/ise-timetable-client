@@ -13,15 +13,11 @@ class Info extends Component {
 			<div className="container">
 				<h1>Information</h1>
 				<div className="card">
-					<img src={photo} alt="your pic" style={{'width': 'auto'}} />
+					<img src={photo} alt="your pic" style={{'width': 'auto'}} className="padTop" />
 					<p>{`Name: ${name}`}</p>
 					<p className="title">{`Major: ${major}`}</p>
 					<p>Chulalongkorn University</p>
-					<p><button>Blessing</button></p>
-				</div>
-				<div className="card">
-					
-					
+					<p><button className='blackBG'>Blessing</button></p>
 				</div>
 			</div>
 			
