@@ -5,7 +5,6 @@ import SearchArea from './components/SearchArea';
 import { renderEvent } from '../../utils/timetable';
 class TimetableCreate extends Component {
 	render() {
-		console.log(this.props.events);
 		return (
 			<div className="container">
 				<h1>Create Timetable</h1>

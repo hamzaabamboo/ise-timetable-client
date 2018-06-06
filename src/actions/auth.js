@@ -28,7 +28,6 @@ export const login = (username, password) => dispatch =>
 		.catch(err => dispatch(loginFail(err)));
 
 export const loginSuccess = data => {
-	console.log('yaay');
 	let { token, name, username } = data;
 	name = name.split(',')[0];
 	localStorage.setItem('token', token);
