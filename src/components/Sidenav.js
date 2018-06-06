@@ -19,6 +19,10 @@ const paths = [
 	{
 		path: '/timetable',
 		text: 'Timetable'
+	},
+	{
+		path: '/timetable/create',
+		text: 'Create Timetable'
 	}
 ];
 class Sidenav extends React.Component {
@@ -39,6 +43,9 @@ class Sidenav extends React.Component {
 				window.dispatchEvent(new Event('resize'));
 			}, 300);
 		}
+	}
+	componentWillUnmount() {
+		window.removeEventListener('resize', () => this.doSizeCheck(), true);
 	}
 
 	doSizeCheck(initial) {

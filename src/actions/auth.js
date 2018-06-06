@@ -4,7 +4,8 @@ import axios from 'axios';
 import qs from 'qs';
 import store from '../store';
 
-const path = 'cureg-test/web/index.php?r=';
+const proxy = 'https://cryptic-headland-94862.herokuapp.com/';
+const path = proxy + 'http://www3.reg.chula.ac.th/cureg-test/web/index.php?r=';
 
 export const login = (username, password) => dispatch =>
 	axios
