@@ -4,10 +4,12 @@ import ui from './ui';
 import auth from './auth';
 import info from './info';
 import timetable from './timetable';
+import message from './message';
 export default combineReducers({
 	auth,
 	ui,
 	info,
 	timetable,
+	message,
 	routing: routerReducer
 });

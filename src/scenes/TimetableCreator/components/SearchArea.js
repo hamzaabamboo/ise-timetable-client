@@ -35,9 +35,9 @@ class SearchArea extends Component {
 						<React.Fragment>
 							<h4>Search Results</h4>
 							<List twoLine>
-								{this.props.results.map((e, i) => (
+								{this.props.results.map(e => (
 									<SimpleListItem
-										key={`${e.id}-${e.section}`}
+										key={`res-${e.id}-${e.section}`}
 										text={`${e.id} - ${e.name}`}
 										secondaryText={`Section: ${
 											e.section
@@ -60,10 +60,10 @@ class SearchArea extends Component {
 						<React.Fragment>
 							<h4>Unannounced Subjects</h4>
 							<List>
-								{this.props.unannounced.map((e, i) => (
+								{this.props.unannounced.map(e => (
 									<SimpleListItem
 										// graphic={`looks_${toNum(i + 1)}`}
-										key={`${e.id}-${e.section}`}
+										key={`unann-${e.id}-${e.section}`}
 										text={`${e.id} - ${e.name}`}
 										meta="close"
 									/>

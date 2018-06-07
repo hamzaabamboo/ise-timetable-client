@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Navbar from '../components/Navbar';
 import Sidenav from '../components/Sidenav';
+import Message from '../components/Message';
 
 export const Page = props => {
 	let { isLoggedIn, component: Component, ...rest } = props;
@@ -16,10 +17,9 @@ export const Page = props => {
 						<Navbar />
 						<div className="main">
 							<Sidenav />
-							<div className="content">
-								<Component {...props} />
-							</div>
+							<Component className="content" {...props} />
 						</div>
+						<Message />
 					</React.Fragment>
 				) : (
 					<Redirect exact to="/login" />
