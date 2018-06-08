@@ -1,4 +1,9 @@
-import { SEARCH_RESULT, CLEAR_RESULT, ADD_SUBJECT } from '../constants';
+import {
+	SEARCH_RESULT,
+	CLEAR_RESULT,
+	ADD_SUBJECT,
+	REMOVE_SUBJECT
+} from '../constants';
 
 const initialState = {
 	searchResults: [],
@@ -9,7 +14,8 @@ const initialState = {
 		thursday: [],
 		friday: []
 	},
-	unannounced: []
+	unannounced: [],
+	added: []
 };
 
 export default (state = initialState, action) => {
@@ -25,6 +31,11 @@ export default (state = initialState, action) => {
 				...action.payload
 			};
 		case ADD_SUBJECT:
+			return {
+				...state,
+				...action.payload
+			};
+		case REMOVE_SUBJECT:
 			return {
 				...state,
 				...action.payload

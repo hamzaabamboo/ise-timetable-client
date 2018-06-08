@@ -4,7 +4,7 @@ export const renderEvent = (event, defaultAttributes, styles) => (
 	<div
 		{...defaultAttributes}
 		title={event.name}
-		key={`${event.id}-${event.section}`}
+		key={`${event.id}-${event.section}-${event.no}`}
 	>
 		<span className={styles.event_info}>{event.name}</span>
 		<span className={styles.event_info}>Section : {event.section}</span>
