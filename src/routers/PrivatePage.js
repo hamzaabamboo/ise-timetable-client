@@ -17,7 +17,9 @@ export const Page = props => {
 						<Navbar />
 						<div className="main">
 							<Sidenav />
-							<Component className="content" {...props} />
+							<div className="content">
+								<Component {...props} />
+							</div>
 						</div>
 						<Message />
 					</React.Fragment>
