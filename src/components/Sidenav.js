@@ -65,6 +65,7 @@ class Sidenav extends React.Component {
 		let { isLoggedIn } = this.props;
 		return (
 			<Drawer
+				className="nav"
 				open={this.props.open}
 				persistent={!this.state.isMobile}
 				temporary={this.state.isMobile}

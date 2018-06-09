@@ -27,20 +27,29 @@ export const getInfo = () => dispatch =>
 		});
 
 export const fetchInfo = data => {
-	let { en_name } = data;
-	let { en_majorName } = data;
-	switch(en_majorName.toLowerCase()) {
-		case 'information and communication engineering': en_majorName = 'ICE'; break;
-		case 'nano engineering': en_majorName = 'NANO'; break;
-		case 'aerospace engineering': en_majorName = 'AERO'; break;
-		case 'automotive design and manufacturing engineering': en_majorName = 'ADME'; break;
-		default: en_majorName = ':D';
+	let { en_name, en_majorName, photo } = data;
+	switch (en_majorName.toLowerCase()) {
+		case 'information and communication engineering':
+			en_majorName = 'ICE';
+			break;
+		case 'nano engineering':
+			en_majorName = 'NANO';
+			break;
+		case 'aerospace engineering':
+			en_majorName = 'AERO';
+			break;
+		case 'automotive design and manufacturing engineering':
+			en_majorName = 'ADME';
+			break;
+		default:
+			en_majorName = ':D';
 	}
 	return {
 		type: FETCH_INFO,
 		payload: {
-			name: en_name.substring(en_name.indexOf('.')+1),
-			major: en_majorName
+			name: en_name.substring(en_name.indexOf('.') + 1),
+			major: en_majorName,
+			photo: photo
 		}
 	};
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Sidenav from '../components/Sidenav';
+import Message from '../components/Message';
 
 export const Page = props => {
 	let { component: Component, ...rest } = props;
@@ -18,6 +19,7 @@ export const Page = props => {
 							<Component {...props} />
 						</div>
 					</div>
+					<Message />
 				</React.Fragment>
 			)}
 		/>

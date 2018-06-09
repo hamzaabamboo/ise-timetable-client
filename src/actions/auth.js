@@ -22,14 +22,12 @@ export const login = (username, password) => dispatch =>
 			}
 		)
 		.then(res => {
-			console.log(res);
 			if (res.data.code === 400) dispatch(loginFail(res.data));
 			else dispatch(loginSuccess(res.data.data));
 		})
 		.catch(err => dispatch(loginFail(err)));
 
 export const loginSuccess = data => {
-	console.log('yaay');
 	let { token, name, username } = data;
 	name = name.split(',')[0];
 	localStorage.setItem('token', token);

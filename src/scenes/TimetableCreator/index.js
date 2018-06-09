@@ -1,27 +1,10 @@
 import React, { Component } from 'react';
 import Timetable from 'react-timetable-events';
-import moment from 'moment';
+import { connect } from 'react-redux';
 import SearchArea from './components/SearchArea';
 import { renderEvent } from '../../utils/timetable';
 class TimetableCreate extends Component {
 	render() {
-		const events = {
-			monday: [
-				{
-					id: 1,
-					name: 'Probably Calculus 1',
-					type: 'Lecture',
-					building: 'ENG 2',
-					room: '302',
-					startTime: moment('2018-02-23T11:30:00'),
-					endTime: moment('2018-02-23T13:30:00')
-				}
-			],
-			tuesday: [],
-			wednesday: [],
-			thursday: [],
-			friday: []
-		};
 		return (
 			<div className="container">
 				<h1>Create Timetable</h1>
@@ -33,7 +16,7 @@ class TimetableCreate extends Component {
 				<SearchArea />
 				<br />
 				<Timetable
-					events={events}
+					events={this.props.events}
 					hoursInterval={[8, 18]}
 					renderEvent={renderEvent}
 				/>
@@ -42,4 +25,8 @@ class TimetableCreate extends Component {
 	}
 }
 
-export default TimetableCreate;
+const mapStateToProps = state => ({
+	events: state.timetable.createEvent
+});
+
+export default connect(mapStateToProps)(TimetableCreate);
